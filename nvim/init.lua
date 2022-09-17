@@ -1,0 +1,2 @@
+require("aku")
+print("bruh")
