@@ -1,62 +1,45 @@
-local Remap = require("aku.binds")
-
-local nnoremap = Remap.nnoremap
-local vnoremap = Remap.vnoremap
-local inoremap = Remap.inoremap
-local xnoremap = Remap.xnoremap
-local onoremap = Remap.onoremap
-local nmap = Remap.nmap
-
--- MAPS NEOVIM MACR
-
+local map = require("aku.binds").map
 
 -- Delete without yank
-nnoremap('<leader>d,', '"_d')
-vnoremap('<leader>d,', '"_d')
-onoremap('<leader>d,', '"_d')
-nnoremap('x', '"_x')
-nnoremap('X', '"_X')
+map('n', '<leader>d', '"_d')
+map('v', '<leader>d', '"_d')
+map('o', '<leader>d', '"_d')
+map('n', 'x', '"_x')
+map('n', 'X', '"_X')
 
 -- Paste the last thing yanked, not deleted
-nnoremap('<leader>p', '"0p')
-nnoremap('<leader>P', '"0P')
-
+map('n', '<leader>p', '"0p')
+map('n', '<leader>P', '"0P')
 
 -- Select everything ggVG
-nnoremap('<c-a>', 'ggVG')
+map('n', '<c-a>', 'ggVG')
 
 -- Remap go to end of line ($) and go to start of line (^)
-nnoremap ('H', '^')
-nnoremap ('L', '$')
-vnoremap ('H', '^')
-vnoremap ('L', '$')
+map('n', 'H', '^')
+map('n', 'L', '$')
+map('v', 'H', '^')
+map('v', 'L', '$')
 
 -- c-s to save in normal mode
-nnoremap('<c-s>', ':w<Enter>')
+map('n', '<c-s>', ':w<Enter>')
 
 -- Press s to add an extra line
 -- The o<Esc>^Da is for deleting comments on the start of the line
-nnoremap('s', 'o<Esc>^"_D')
-nnoremap('S', 'O<Esc>^"_D')
+map('n', '<c-Space>', 'o<Esc>^"_D')
 
 -- Backspace in visual mode deletes selection
-vnoremap('<BS>', 'd')
-
--- Use ctrl-[ijkl] to select the active split
-nmap ('<silent> <c-up>', ':wincmd k<CR>')
-nmap ('<silent> <c-down>', ':wincmd j<CR>')
-nmap ('<silent> <c-left>', ':wincmd h<CR>')
-nmap ('<silent> <c-right>', ':wincmd l<CR>')
-
--- TODO: Remap replace to ctrl + r
+map('v', '<BS>', 'd')
 
 -- active c-backspace and alt-basckspace to delete
-inoremap('<C-H>', '<C-W>')
-inoremap('<C-Del>', '<C-o>dw')
+map('n', '<c-H>', '<C-W>')
+map('n', '<c-Del>', '<C-o>dw')
 
 -- Close the current buffer and move to the previous one
 -- This replicates the idea of closing a tab
-nmap('<silent><leader>bq', ':bp <BAR> bd #<CR>')
+map('n', '<leader>bq', ':bp <BAR> bd #<CR>', {silent = true})
 -- Force quit
-nmap('<silent><leader>bQ', ':bp <BAR> bd! #<CR>')
+map('n', '<leader>bQ', ':bp <BAR> bd! #<CR>', {silent = true})
 
+-- Change buffer to next/previous
+map('n', '<C-p>', ':bnext<CR>', {silent = true})
+map('n', '<C-n>', ':bprevious<CR>', {silent = true})
