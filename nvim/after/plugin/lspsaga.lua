@@ -18,8 +18,8 @@ map("n", "gr", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
 -- Hover Doc
 map("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
 
--- Rename
-map("n", "<F2>", "<cmd>Lspsaga rename<CR>", { silent = true })
+-- Rename | Broken
+-- map("n", "<F2>", ":Lspsaga rename<Enter><Esc>a", { silent = true })
 
 -- Code action
 map("n", "<leader>ac", "<cmd>Lspsaga code_action<CR>", { silent = true })
@@ -31,3 +31,7 @@ map("n", "<leader>cd", "<cmd>Lspsaga show_line_diagnostics<CR>", { silent = true
 -- Outline
 map("n","<leader>o", "<cmd>LSoutlineToggle<CR>",{ silent = true })
 
+-- Diagnsotic jump can use `<c-o>` to jump back
+-- map("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true })
+map("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true })
+map("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true })

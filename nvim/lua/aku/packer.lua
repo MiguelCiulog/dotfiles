@@ -40,17 +40,28 @@ return require('packer').startup(function(use)
     use 'glepnir/lspsaga.nvim'
 
     -- Autocompletion plugin
-    use 'hrsh7th/nvim-cmp'
+    use "hrsh7th/nvim-cmp"
 
-    -- LSP source for nvim-cmp
-    use 'hrsh7th/cmp-nvim-lsp'
+    -- Auto-completion
+    use "hrsh7th/cmp-buffer"       -- Cmp source for buffer words
+    use "hrsh7th/cmp-path"         -- Cmp source for path
+    use "hrsh7th/cmp-nvim-lsp"     -- Cmp source for LSP client
+    use "hrsh7th/cmp-nvim-lua"     -- Cmp source for nvim lua
+    use "saadparwaiz1/cmp_luasnip" -- Luasnip completion source
 
-    -- Snippets source for nvim-cmp
-    use 'saadparwaiz1/cmp_luasnip'
+    -- null-ls
+    use 'jose-elias-alvarez/null-ls.nvim'
 
     -- Snippets plugin
     use 'L3MON4D3/LuaSnip'
 
     -- VSCode like pictograms on completion
     use 'onsails/lspkind.nvim'
+
+    -- Manage buffers on tab
+    use "tiagovla/scope.nvim"
+
+    -- Windows
+    use "anuvyklack/windows.nvim"
+    use "anuvyklack/middleclass"
 end)

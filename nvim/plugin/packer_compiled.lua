@@ -84,15 +84,35 @@ _G.packer_plugins = {
     path = "/home/macr/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["animation.nvim"] = {
+    loaded = true,
+    path = "/home/macr/.local/share/nvim/site/pack/packer/start/animation.nvim",
+    url = "https://github.com/anuvyklack/animation.nvim"
+  },
   ["bufferline.nvim"] = {
     loaded = true,
     path = "/home/macr/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
     url = "https://github.com/akinsho/bufferline.nvim"
   },
+  ["cmp-buffer"] = {
+    loaded = true,
+    path = "/home/macr/.local/share/nvim/site/pack/packer/start/cmp-buffer",
+    url = "https://github.com/hrsh7th/cmp-buffer"
+  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/home/macr/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
+  },
+  ["cmp-nvim-lua"] = {
+    loaded = true,
+    path = "/home/macr/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
+    url = "https://github.com/hrsh7th/cmp-nvim-lua"
+  },
+  ["cmp-path"] = {
+    loaded = true,
+    path = "/home/macr/.local/share/nvim/site/pack/packer/start/cmp-path",
+    url = "https://github.com/hrsh7th/cmp-path"
   },
   cmp_luasnip = {
     loaded = true,
@@ -123,6 +143,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/macr/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
+  },
+  middleclass = {
+    loaded = true,
+    path = "/home/macr/.local/share/nvim/site/pack/packer/start/middleclass",
+    url = "https://github.com/anuvyklack/middleclass"
+  },
+  ["null-ls.nvim"] = {
+    loaded = true,
+    path = "/home/macr/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
+    url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
   },
   ["nvim-cmp"] = {
     loaded = true,
@@ -164,6 +194,11 @@ _G.packer_plugins = {
     path = "/home/macr/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["scope.nvim"] = {
+    loaded = true,
+    path = "/home/macr/.local/share/nvim/site/pack/packer/start/scope.nvim",
+    url = "https://github.com/tiagovla/scope.nvim"
+  },
   ["suda.vim"] = {
     loaded = true,
     path = "/home/macr/.local/share/nvim/site/pack/packer/start/suda.vim",
@@ -173,6 +208,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/macr/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["windows.nvim"] = {
+    loaded = true,
+    path = "/home/macr/.local/share/nvim/site/pack/packer/start/windows.nvim",
+    url = "https://github.com/anuvyklack/windows.nvim"
   }
 }
 

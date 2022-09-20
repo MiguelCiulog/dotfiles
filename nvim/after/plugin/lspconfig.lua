@@ -14,6 +14,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>gd', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, bufopts)
   -- vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
 end
 
@@ -68,7 +69,7 @@ vim.diagnostic.config({
   update_in_insert = true,
   float = {
     source = "always", -- Or "if_many"
-  },
+  }
 })
 
 -- Set up languages

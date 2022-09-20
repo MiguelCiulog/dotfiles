@@ -4,7 +4,16 @@ local map = require("aku.binds").map
 --     use_default_mappings = false
 -- })
  
-require("Comment").setup()
--- map('n', '<Leader>/', '<Plug>commentary<Nil>', { silent = true })
--- map('n', 'F', '<Plug>commentary<Nil>', { silent = true })
+require("Comment").setup({
+    ---Lines to be ignored while (un)comment
+    ignore = '^$'
+})
+-- map('n', '<C-/>', 'lua require("Comment.api").toggle.linewise.current()', { silent = true })
+map('n', "<leader>/", '<Plug>(comment_toggle_linewise_current)')
+
+local n = '<ESC><cmd>lua require("Comment.api")'
+local j = '.toggle.linewise(vim.fn.visualmode())<CR>'
+
+map('v', "<leader>/", n .. j)
+
 

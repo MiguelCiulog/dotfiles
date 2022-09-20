@@ -30,9 +30,9 @@ map('n', '<c-Space>', 'o<Esc>^"_D')
 -- Backspace in visual mode deletes selection
 map('v', '<BS>', 'd')
 
--- active c-backspace and alt-basckspace to delete
-map('n', '<c-H>', '<C-W>')
-map('n', '<c-Del>', '<C-o>dw')
+-- active c-backspace and alt-kspace to delete
+map('n', '<C-BS>', '<C-o>dbi')
+map('n', '<C-Del>', '<C-o>dwi')
 
 -- Close the current buffer and move to the previous one
 -- This replicates the idea of closing a tab
@@ -43,3 +43,15 @@ map('n', '<leader>bQ', ':bp <BAR> bd! #<CR>', {silent = true})
 -- Change buffer to next/previous
 map('n', '<C-p>', ':bnext<CR>', {silent = true})
 map('n', '<C-n>', ':bprevious<CR>', {silent = true})
+
+-- Function to trim extra whitespace in whole file
+vim.cmd [[
+function! Trim()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+]]
+
+vim.cmd "command! -nargs=0 Trim call Trim()"
+
