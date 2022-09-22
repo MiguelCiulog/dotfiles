@@ -44,6 +44,10 @@ map('n', '<leader>bQ', ':bp <BAR> bd! #<CR>', {silent = true})
 map('n', '<C-p>', ':bnext<CR>', {silent = true})
 map('n', '<C-n>', ':bprevious<CR>', {silent = true})
 
+-- go to beginning and end
+map('i', '<C-l>', '<ESC>^i')
+map('i', '<C-h>', '<End>')
+
 -- Function to trim extra whitespace in whole file
 vim.cmd [[
 function! Trim()
