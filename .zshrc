@@ -100,7 +100,8 @@ source $ZSH/oh-my-zsh.sh
 alias v="nvim"
 alias lg="lazygit"
 alias cls="clear"
-# alias wezterm='flatpak run org.wezfurlong.wezterm'
+alias ls="ls -hF --color"
+alias ll="ls -thl --color"
 
 # Actual Golang
 export PATH=$PATH:/usr/local/go/bin
@@ -111,6 +112,6 @@ export PATH=$PATH:/home/macr/.local/bin
 eval "$(starship init zsh)"
 
 # remove ls default zsh highlight color
-_ls_colors=":ow=1;34;"
+_ls_colors="ow=34;1:"
 LS_COLORS+=$_ls_colors
 zstyle ':completion:*:default' list-colors "${(s.:.)_ls_colors}"
