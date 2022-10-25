@@ -39,6 +39,10 @@ return require('packer').startup(function(use)
     use 'neovim/nvim-lspconfig'
     use 'glepnir/lspsaga.nvim'
 
+    -- Easier lsp config
+    use "williamboman/mason.nvim"
+    use "williamboman/mason-lspconfig.nvim"
+
     -- Autocompletion plugin
     use "hrsh7th/nvim-cmp"
 
@@ -64,4 +68,5 @@ return require('packer').startup(function(use)
     -- Windows
     use "anuvyklack/windows.nvim"
     use "anuvyklack/middleclass"
+
 end)

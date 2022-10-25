@@ -52,8 +52,7 @@ local lsp_flags = {
     debounce_text_changes = 150,
 }
 -- Format on save and on command
-vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
-vim.cmd "command! -nargs=0 Format lua vim.lsp.buf.formatting {}"
+vim.cmd "command! -nargs=0 Format lua vim.lsp.buf.format {async = true}"
 
 -- Diagnostic symbols in the sign column (gutter)
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
