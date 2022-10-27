@@ -36,31 +36,7 @@ return require('packer').startup(function(use)
     use 'xiyaowong/nvim-transparent'
 
     -- LSP
-    use 'neovim/nvim-lspconfig'
-    use 'glepnir/lspsaga.nvim'
-
-    -- Easier lsp config
-    use "williamboman/mason.nvim"
-    use "williamboman/mason-lspconfig.nvim"
-
-    -- Autocompletion plugin
-    use "hrsh7th/nvim-cmp"
-
-    -- Auto-completion
-    use "hrsh7th/cmp-buffer"       -- Cmp source for buffer words
-    use "hrsh7th/cmp-path"         -- Cmp source for path
-    use "hrsh7th/cmp-nvim-lsp"     -- Cmp source for LSP client
-    use "hrsh7th/cmp-nvim-lua"     -- Cmp source for nvim lua
-    use "saadparwaiz1/cmp_luasnip" -- Luasnip completion source
-
-    -- null-ls
-    use 'jose-elias-alvarez/null-ls.nvim'
-
-    -- Snippets plugin
-    use 'L3MON4D3/LuaSnip'
-
-    -- VSCode like pictograms on completion
-    use 'onsails/lspkind.nvim'
+    use {'neoclide/coc.nvim', branch = 'release'}
 
     -- Manage buffers on tab
     use "tiagovla/scope.nvim"

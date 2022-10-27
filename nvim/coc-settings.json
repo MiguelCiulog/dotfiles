@@ -1,0 +1,24 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": [
+    "json",
+    "css",
+    "markdown",
+    "javascript",
+    "go"
+  ],
+  "diagnostic.checkCurrentLine": true,
+
+  // "snippets.userSnippetsDirectory": "$HOME/.config/nvim/snippets",
+  "snippets.textmateSnippetsRoots": [
+  "$HOME/.config/nvim/snippets"
+    // "C:\\Users\\angel\\AppData\\Local\\nvim\\snippets"
+  ],
+
+  "snippets.extends": {
+    "cpp": ["c"],
+    "javascriptreact": ["javascript"],
+    "typescript": ["javascript"]
+  },
+  "snippets.ultisnips.enable": false,
+  "snippets.loadFromExtensions": false
+}
