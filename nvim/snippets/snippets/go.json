@@ -264,6 +264,11 @@
     "body": "func (${1:receiver} ${2:type}) ${3:method}($4) $5 {\n\t$0\n}",
     "description": "Snippet for method declaration"
   },
+  "hello world": {
+    "prefix": "helloworld",
+    "body": "package main\n\nimport (\n\t\"fmt\"\n)\n\nfunc main() {\n\tfmt.Println(\"Hello world!\")\n}",
+    "description": "Snippet for sample hello world webapp"
+  },
   "hello world web app": {
     "prefix": "helloweb",
     "body": "package main\n\nimport (\n\t\"fmt\"\n\t\"net/http\"\n\t\"time\"\n)\n\nfunc greet(w http.ResponseWriter, r *http.Request) {\n\tfmt.Fprintf(w, \"Hello World! %s\", time.Now())\n}\n\nfunc main() {\n\thttp.HandleFunc(\"/\", greet)\n\thttp.ListenAndServe(\":8080\", nil)\n}",

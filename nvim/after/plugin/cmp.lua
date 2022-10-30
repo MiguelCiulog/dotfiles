@@ -6,7 +6,7 @@ end
 -- luasnip setup
 local luasnip = require 'luasnip'
 require("luasnip.loaders.from_vscode").lazy_load(
-{ paths = { "~/.config/nvim/snippets" } }
+{ paths = { "~/AppData/Local/nvim/snippets" } }
 )
 
 -- lsp-kind setup (Pictograms)
@@ -56,20 +56,18 @@ cmp.setup {
     }),
     sources = {
         { name = "nvim_lsp" },
-        { name = "nvim_lua" },
-        { name = "path" },
         { name = "luasnip" },
-        { name = "buffer" },
+        { name = "path", keyword_length = 5 },
+        { name = "buffer" , keyword_length = 3 },
     },
     formatting = {
         format = lspkind.cmp_format({
             mode = "symbol_text",
             menu = ({
-                buffer = "[Buffer]",
                 nvim_lsp = "[LSP]",
                 luasnip = "[LuaSnip]",
-                nvim_lua = "[Lua]",
                 path = "[Path]",
+                buffer = "[Buffer]",
             })
         }),
     }
