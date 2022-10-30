@@ -92,3 +92,7 @@ vim.cmd "highlight! CmpItemKindMethod guibg=NONE guifg=#C586C0"
 vim.cmd "highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4"
 vim.cmd "highlight! CmpItemKindProperty guibg=NONE guifg=#D4D4D4"
 vim.cmd "highlight! CmpItemKindUnit guibg=NONE guifg=#D4D4D4"
+
+-- Add additional capabilities supported by nvim-cmp
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities()

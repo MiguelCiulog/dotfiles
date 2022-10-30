@@ -31,8 +31,8 @@ map('n', '<c-Space>', 'o<Esc>^"_D')
 map('v', '<BS>', 'd')
 
 -- active c-backspace and alt-kspace to delete
-map('n', '<C-BS>', '<C-o>dbi')
-map('n', '<C-Del>', '<C-o>dwi')
+map('i', '<C-BS>', '<C-o>db') -- TODO
+map('i', '<C-Del>', '<C-o>dw')
 
 -- Close the current buffer and move to the previous one
 -- This replicates the idea of closing a tab
@@ -43,6 +43,10 @@ map('n', '<leader>bQ', ':bp <BAR> bd! #<CR>', {silent = true})
 -- Change buffer to next/previous
 map('n', '<C-p>', ':bnext<CR>', {silent = true})
 map('n', '<C-n>', ':bprevious<CR>', {silent = true})
+
+-- Add/remove tab/workspace
+map('n', '<leader>tn', ':tabnew<CR>', {silent = true})
+map('n', '<leader>td', ':tabclose<CR>', {silent = true})
 
 -- go to beginning and end
 map('i', '<C-h>', '<ESC>^i')
@@ -58,4 +62,5 @@ endfun
 ]]
 
 vim.cmd "command! -nargs=0 Trim call Trim()"
+
 

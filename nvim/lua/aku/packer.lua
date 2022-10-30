@@ -43,6 +43,11 @@ return require('packer').startup(function(use)
     use "williamboman/mason.nvim"
     use "williamboman/mason-lspconfig.nvim"
 
+    -- DAP
+    use 'mfussenegger/nvim-dap'
+    use 'rcarriga/nvim-dap-ui'
+    use 'leoluz/nvim-dap-go'
+
     -- Autocompletion plugin
     use "hrsh7th/nvim-cmp"
 
