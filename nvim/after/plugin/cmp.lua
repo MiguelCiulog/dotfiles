@@ -6,7 +6,7 @@ end
 -- luasnip setup
 local luasnip = require 'luasnip'
 require("luasnip.loaders.from_vscode").lazy_load(
-{ paths = { "~/AppData/Local/nvim/snippets" } }
+{ paths = { "~/.config/nvim/snippets/" } }
 )
 
 -- lsp-kind setup (Pictograms)
