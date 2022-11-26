@@ -97,11 +97,13 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 
 # Aliases
-alias v="nvim"
+alias nv="nvim"
 alias lg="lazygit"
 alias cls="clear"
-alias ls="ls -hF --color"
-alias ll="ls -thl --color"
+# alias ls="ls -hF --color"
+# alias ll="ls -thl --color"
+# alias ls="lsd -hF --color"
+# alias ll="lsd -thl --color"
 
 # Actual Golang
 export PATH=$PATH:/usr/local/go/bin
@@ -115,3 +117,4 @@ eval "$(starship init zsh)"
 _ls_colors="ow=34;1:"
 LS_COLORS+=$_ls_colors
 zstyle ':completion:*:default' list-colors "${(s.:.)_ls_colors}"
+

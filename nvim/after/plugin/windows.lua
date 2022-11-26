@@ -1,7 +1,7 @@
 require("windows").setup({
    autowidth = {
       enable = true,
-      winwidth = 6,
+      winwidth = 2,
       filetype = {
          help = 2,
       },
