@@ -171,9 +171,8 @@ map("v", "<leader>ac", "<cmd>Lspsaga code_action<CR>", { silent = true })
 map("n", "<leader>cd", "<cmd>Lspsaga show_line_diagnostics<CR>", { silent = true })
 
 -- Outline
-map("n","<leader>o", "<cmd>LSoutlineToggle<CR>",{ silent = true })
+map("n","<leader>o", "<cmd>Lspsaga outline<CR>",{ silent = true })
 
 -- Diagnsotic jump can use `<c-o>` to jump back
--- map("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true })
 map("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true })
 map("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true })

@@ -45,7 +45,7 @@ map('n', '<C-p>', ':bnext<CR>', {silent = true})
 map('n', '<C-n>', ':bprevious<CR>', {silent = true})
 
 -- Add/remove tab/workspace
-map('n', '<leader>tn', ':tabnew<CR>', {silent = true})
+map('n', '<leader>tn', ':tabnew | Telescope find_files<CR>', {silent = true})
 map('n', '<leader>td', ':tabclose<CR>', {silent = true})
 
 -- go to beginning and end

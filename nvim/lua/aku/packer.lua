@@ -16,6 +16,7 @@ return require('packer').startup(function(use)
 
     -- Language package
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+    use 'nvim-treesitter/nvim-treesitter-context'
     use 'lukas-reineke/indent-blankline.nvim'
 
     -- Comments
@@ -46,7 +47,10 @@ return require('packer').startup(function(use)
     -- DAP
     use 'mfussenegger/nvim-dap'
     use 'rcarriga/nvim-dap-ui'
+    use 'theHamsta/nvim-dap-virtual-text'
+
     use 'leoluz/nvim-dap-go'
+    use 'mfussenegger/nvim-dap-python'
 
     -- Autocompletion plugin
     use "hrsh7th/nvim-cmp"
@@ -73,5 +77,8 @@ return require('packer').startup(function(use)
     -- Windows
     use "anuvyklack/windows.nvim"
     use "anuvyklack/middleclass"
+
+    -- Git
+    use 'lewis6991/gitsigns.nvim'
 
 end)

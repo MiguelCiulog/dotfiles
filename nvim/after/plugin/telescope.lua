@@ -2,7 +2,12 @@ local map = require("aku.binds").map
 
 require('telescope').setup{
     defaults = {
-        file_ignore_patterns = { "node_modules", ".git", "__pycache__" }
+        file_ignore_patterns = {
+            "node_modules",
+            ".git",
+            "venv",
+            "__pycache__",
+        }
     }
 }
 

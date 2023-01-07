@@ -38,10 +38,10 @@ vim.opt.ruler = true
 vim.opt.enc = 'utf-8'
 vim.opt.cursorline = true
 vim.opt.clipboard = 'unnamedplus'
-vim.opt.background = 'dark'
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.mouse = 'a'
 vim.opt.scrolloff = 8
 
 vim.opt.list = true
+vim.opt.background = 'dark'
