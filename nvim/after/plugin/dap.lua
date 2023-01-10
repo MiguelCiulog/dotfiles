@@ -40,8 +40,8 @@ map('n', '<F10>', '<Cmd>lua require"dap".step_over()<CR>', {silent=true})
 map('n', '<F11>', '<Cmd>lua require"dap".step_into()<CR>', {silent=true})
 map('n', '<F12>', '<Cmd>lua require"dap".step_out()<CR>', {silent=true})
 map(
-    'n', '<Leader>b', '<Cmd>lua require"dap".toggle_breakpoint()<CR>',
-    {silent=true, nowait=true}
+    'n', '<Leader>bb', '<Cmd>lua require"dap".toggle_breakpoint()<CR>',
+    {silent=true}
 )
 -- map('n', '<Leader>B', '<Cmd>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>')
 
