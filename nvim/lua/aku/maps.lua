@@ -41,8 +41,8 @@ map('n', '<leader>bq', ':bp <BAR> bd #<CR>', {silent = true})
 map('n', '<leader>bQ', ':bp <BAR> bd! #<CR>', {silent = true})
 
 -- Change buffer to next/previous
-map('n', '<C-p>', ':bnext<CR>', {silent = true})
-map('n', '<C-n>', ':bprevious<CR>', {silent = true})
+-- map('n', '<C-p>', ':bnext<CR>', {silent = true})
+-- map('n', '<C-n>', ':bprevious<CR>', {silent = true})
 
 -- Add/remove tab/workspace
 map('n', '<leader>tn', ':tabnew | Telescope find_files<CR>', {silent = true})

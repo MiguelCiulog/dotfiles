@@ -81,4 +81,6 @@ return require('packer').startup(function(use)
     -- Git
     use 'lewis6991/gitsigns.nvim'
 
+    -- Windows
+    use 'wesQ3/vim-windowswap'
 end)
