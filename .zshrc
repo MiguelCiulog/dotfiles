@@ -108,6 +108,10 @@ function cs () {
     cd "$@" && ls
 }
 
+function vgd () {
+    nvim --listen /tmp/godot "$@"
+}
+
 # Actual Golang
 export PATH=$PATH:/usr/local/go/bin
 # Go Install
