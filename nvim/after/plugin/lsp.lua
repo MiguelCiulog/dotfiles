@@ -48,10 +48,6 @@ protocol.CompletionItemKind = {
     "" -- TypeParameter
 }
 
-local lsp_flags = {
-    -- This is the default in Nvim 0.7+
-    debounce_text_changes = 150,
-}
 -- Format on save and on command
 vim.cmd "command! -nargs=0 Format lua vim.lsp.buf.format {async = true}"
 
@@ -72,6 +68,10 @@ vim.diagnostic.config({
   }
 })
 
+local lsp_flags = {
+    -- This is the default in Nvim 0.7+
+    debounce_text_changes = 150,
+}
 -- Set up languages
 require('lspconfig').pyright.setup{
     on_attach = on_attach,
@@ -91,8 +91,9 @@ require('lspconfig').tsserver.setup{
 }
 require('lspconfig').gdscript.setup{
     on_attach = on_attach,
-    flags = lsp_flags,
+    flags = {debounce_text_changes = 300},
     filetypes = { "gd", "gdscript", "gdscript3" },
+    capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 }
 
 -- lspkind
