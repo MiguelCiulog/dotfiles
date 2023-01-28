@@ -38,7 +38,10 @@ return require('packer').startup(function(use)
 
     -- LSP
     use 'neovim/nvim-lspconfig'
-    use 'glepnir/lspsaga.nvim'
+    use {
+        "glepnir/lspsaga.nvim",
+        commit = 'b7b4777369b441341b2dcd45c738ea4167c11c9e'
+    }
 
     -- Easier lsp config
     use "williamboman/mason.nvim"
@@ -83,4 +86,7 @@ return require('packer').startup(function(use)
 
     -- Windows
     use 'wesQ3/vim-windowswap'
+
+    -- Multiple cursors
+    use 'mg979/vim-visual-multi'
 end)

@@ -89,6 +89,11 @@ require('lspconfig').tsserver.setup{
     on_attach = on_attach,
     flags = lsp_flags,
 }
+require('lspconfig').gdscript.setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+    filetypes = { "gd", "gdscript", "gdscript3" },
+}
 
 -- lspkind
 local status, lspkind = pcall(require, "lspkind")
