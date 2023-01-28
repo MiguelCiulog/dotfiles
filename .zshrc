@@ -97,13 +97,16 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 
 # Aliases
-alias nv="nvim"
+alias vim="nvim"
 alias lg="lazygit"
 alias cls="clear"
 # alias ls="ls -hF --color"
 # alias ll="ls -thl --color"
 # alias ls="lsd -hF --color"
 # alias ll="lsd -thl --color"
+function cs () {
+    cd "$@" && ls
+}
 
 # Actual Golang
 export PATH=$PATH:/usr/local/go/bin
