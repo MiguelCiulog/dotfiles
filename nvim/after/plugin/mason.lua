@@ -8,5 +8,11 @@ require("mason").setup({
     }
 })
 require("mason-lspconfig").setup({
-    ensure_installed={"pyright"}
+    ensure_installed={
+        "sumneko_lua",
+        "pyright",
+        "gopls",
+        "jsonls",
+        "tsserver",
+    }
 })

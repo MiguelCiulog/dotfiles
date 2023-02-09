@@ -72,23 +72,20 @@ local lsp_flags = {
     -- This is the default in Nvim 0.7+
     debounce_text_changes = 150,
 }
--- Set up languages
-require('lspconfig').pyright.setup{
-    on_attach = on_attach,
-    flags = lsp_flags,
-}
-require('lspconfig').gopls.setup{
-    on_attach = on_attach,
-    flags = lsp_flags,
-}
-require('lspconfig').jsonls.setup{
-    on_attach = on_attach,
-    flags = lsp_flags,
-}
-require('lspconfig').tsserver.setup{
-    on_attach = on_attach,
-    flags = lsp_flags,
-}
+
+local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+local lspconfig = require('lspconfig')
+require('mason-lspconfig').setup_handlers({
+  function(server_name)
+    lspconfig[server_name].setup({
+      on_attach = on_attach,
+      capabilities = lsp_capabilities,
+    })
+  end,
+})
+
+-- Set up extra languages (Not in mason)
 require('lspconfig').gdscript.setup{
     on_attach = on_attach,
     flags = {debounce_text_changes = 300},

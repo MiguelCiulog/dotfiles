@@ -2,8 +2,26 @@ require 'nvim-treesitter.install'.compilers = { "clang" }
 
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "go", "gomod" , "json",
-	"javascript", "java", "python"},
+  ensure_installed = {
+      "go",
+      "gomod",
+      "json",
+      "javascript",
+      "java",
+      "python",
+      "bash",
+      "help",
+      "html",
+      "lua",
+      "markdown",
+      "markdown_inline",
+      "query",
+      "regex",
+      "tsx",
+      "typescript",
+      "vim",
+      "yaml"
+  },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
