@@ -7,6 +7,13 @@ map('o', '<leader>d', '"_d')
 map('n', 'x', '"_x')
 map('n', 'X', '"_X')
 
+map('n', '<leader>c', '"_c')
+map('v', '<leader>c', '"_c')
+map('o', '<leader>c', '"_c')
+map('n', '<leader>C', '"_C')
+map('v', '<leader>C', '"_C')
+map('o', '<leader>C', '"_C')
+
 -- Paste the last thing yanked, not deleted
 map('n', '<leader>p', '"0p')
 map('n', '<leader>P', '"0P')
@@ -36,9 +43,9 @@ map('i', '<C-Del>', '<C-o>dw')
 
 -- Close the current buffer and move to the previous one
 -- This replicates the idea of closing a tab
-map('n', '<leader>bq', ':bp <BAR> bd #<CR>', {silent = true})
+map('n', '<leader>bd', ':bp <BAR> bd #<CR>', {silent = true})
 -- Force quit
-map('n', '<leader>bQ', ':bp <BAR> bd! #<CR>', {silent = true})
+map('n', '<leader>bD', ':bp <BAR> bd! #<CR>', {silent = true})
 
 -- Change buffer to next/previous
 -- map('n', '<C-p>', ':bnext<CR>', {silent = true})
