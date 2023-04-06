@@ -13,12 +13,37 @@ local on_attach = function(client, bufnr)
 	-- Mappings.
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
+    -- vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
 	-- vim.keymap.set('n', '<leader>gd', vim.lsp.buf.declaration, bufopts)
 	vim.keymap.set("n", "<leader>gd", vim.lsp.buf.declaration, bufopts)
 	vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
 	vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
 	vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, bufopts)
-	-- vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+    vim.keymap.set('n', '<space>fr', function()
+      vim.lsp.buf.format { async = true }
+    end, bufopts)
+end
+
+vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]]
+vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
+
+local border = {
+      {"🭽", "FloatBorder"},
+      {"▔", "FloatBorder"},
+      {"🭾", "FloatBorder"},
+      {"▕", "FloatBorder"},
+      {"🭿", "FloatBorder"},
+      {"▁", "FloatBorder"},
+      {"🭼", "FloatBorder"},
+      {"▏", "FloatBorder"},
+}
+
+-- To instead override globally
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+  opts = opts or {}
+  opts.border = opts.border or border
+  return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
 
 local protocol = require("vim.lsp.protocol")
@@ -94,6 +119,19 @@ require("lspconfig").gdscript.setup({
 	filetypes = { "gd", "gdscript", "gdscript3" },
 	capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
 })
+
+-- require('lspconfig').pylsp.setup{
+--   settings = {
+--     pylsp = {
+--       plugins = {
+--         pycodestyle = {
+--           ignore = {'W391'},
+--           maxLineLength = 100
+--         }
+--       }
+--     }
+--   }
+-- }
 
 -- lspkind
 local status, lspkind = pcall(require, "lspkind")
@@ -343,9 +381,9 @@ function filter_diagnostics(diagnostic)
 	-- Allow kwargs to be unused, sometimes you want many functions to take the
 	-- same arguments but you don't use all the arguments in all the functions,
 	-- so kwargs is used to suck up all the extras
-	if diagnostic.message == '"kwargs" is not accessed' then
-		return false
-	end
+	-- if diagnostic.message == '"kwargs" is not accessed' then
+	-- 	return false
+	-- end
 
 	-- Allow variables starting with an underscore
 	if string.match(diagnostic.message, '"_.+" is not accessed') then
