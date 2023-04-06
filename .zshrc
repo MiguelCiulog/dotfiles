@@ -97,7 +97,7 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 
 # Aliases
-alias vim="nvim"
+alias v="nvim"
 alias lg="lazygit"
 alias cls="clear"
 # alias ls="ls -hF --color"
@@ -108,9 +108,11 @@ function cs () {
     cd "$@" && ls
 }
 
-function vgd () {
+function ngd () {
     nvim --listen /tmp/godot "$@"
 }
+
+alias pyvenv="source ./.venv/bin/activate"
 
 # Actual Golang
 export PATH=$PATH:/usr/local/go/bin
