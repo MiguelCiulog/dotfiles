@@ -1,0 +1,96 @@
+" set which-key
+
+" Relative numbers
+set nu rnu
+
+" Set scroll with cursor
+set scrolloff=5
+
+" Use system clipboard
+set clipboard+=unnamedplus
+
+" Use space as leader key
+nnoremap <Space> <Nop>
+let mapleader = " "
+
+" Used for search
+set smartcase
+set ignorecase
+
+" No highlight when searching
+set nohlsearch
+
+" Delete without yank
+nnoremap <leader>d "_d
+vnoremap <leader>d "_d
+onoremap <leader>d "_d
+nnoremap x "_x
+nnoremap X "_X
+
+" Paste the last thing yanked, not deleted
+nnoremap <leader>p "0p
+nnoremap <leader>P "0P
+
+
+" Remap go to end of line ($) and go to start of line (^)
+nnoremap H ^
+nnoremap L $
+vnoremap H ^
+vnoremap L $
+
+nnoremap <leader>c "_c
+vnoremap <leader>c "_c
+onoremap <leader>c "_c
+nnoremap <leader>C "_C
+vnoremap <leader>C "_C
+onoremap <leader>C "_C
+
+
+" c-s to save in normal mode
+nnoremap <c-s> :w<Enter>
+
+" Press s to add an extra line
+" The o<Esc>^Da is for deleting comments on the start of the line
+nnoremap <c-Space> o<Esc>^"_D
+
+" Close the current buffer and move to the previous one
+" This replicates the idea of closing a tab
+nnoremap <leader>bd <silent>:bp <BAR> bd #<CR>
+" Force quit
+nnoremap <leader>bD <silent>:bp <BAR> bd! #<CR>
+
+" go to beginning and end
+inoremap <C-h> <ESC>^i
+inoremap <C-l> <End>
+
+" " Change buffer to next/previous
+nnoremap <C-p> :action NextTab<CR>
+nnoremap <C-n> :action PreviousTab<CR>
+
+" Format
+map fr <action>(ReformatCode)
+
+" Actions
+map <leader>ac <action>(ShowIntentionActions)
+
+" Cringe telescope
+map ff <action>(GotoFile)
+map fg <action>(FindInPath)
+
+" Lsp stuff
+map gd <action>(GotoDeclaration)
+map gr <action>(FindUsages)
+
+" Random stuff
+
+map <leader>b <action>(ToggleLineBreakpoint)
+
+nnoremap <c-z> :action ToggleDistractionFreeMode<CR>
+
+nnoremap gc :action CommentByLineComment<CR>
+vnoremap gc :action CommentByLineComment<CR>
+
+nnoremap <f2> :action RenameElement<CR>
+
+nmap <C-o> :action Back<CR>
+nmap <C-i> :action Forward<CR>
