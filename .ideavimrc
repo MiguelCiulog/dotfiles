@@ -1,4 +1,6 @@
 " set which-key
+set commentary
+set ideajoin
 
 " Relative numbers
 set nu rnu
@@ -86,9 +88,6 @@ map gr <action>(FindUsages)
 map <leader>b <action>(ToggleLineBreakpoint)
 
 nnoremap <c-z> :action ToggleDistractionFreeMode<CR>
-
-nnoremap gc :action CommentByLineComment<CR>
-vnoremap gc :action CommentByLineComment<CR>
 
 nnoremap <f2> :action RenameElement<CR>
 
