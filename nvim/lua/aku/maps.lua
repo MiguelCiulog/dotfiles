@@ -29,6 +29,7 @@ map('v', 'L', '$')
 
 -- c-s to save in normal mode
 map('n', '<c-s>', ':w<Enter>')
+map('i', '<c-s>', '<Esc>:w<Enter>a')
 
 -- Press s to add an extra line
 -- The o<Esc>^Da is for deleting comments on the start of the line

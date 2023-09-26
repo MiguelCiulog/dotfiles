@@ -7,6 +7,7 @@ return require("packer").startup(function(use)
 	-- Packer can manage itself
 	use("wbthomason/packer.nvim")
 	use("rebelot/kanagawa.nvim")
+    use("ellisonleao/gruvbox.nvim")
 
 	-- Top line
 	use({ "akinsho/bufferline.nvim", tag = "v2.*" })

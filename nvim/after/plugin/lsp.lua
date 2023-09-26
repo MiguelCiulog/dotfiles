@@ -199,11 +199,6 @@ lspkind.init({
 })
 
 -- lspsaga
--- local status, saga = pcall(require, "lspsaga")
--- if not status then
--- 	return
--- end
-
 require("lspsaga").setup({
     ui = {
         border = "rounded",
@@ -257,7 +252,7 @@ require("lspsaga").setup({
     },
     preview = {
         lines_above = 0,
-        lines_below = 10,
+        lines_below = 15,
     },
     scroll_preview = {
         scroll_down = "<C-f>",
