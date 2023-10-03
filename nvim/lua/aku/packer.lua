@@ -93,7 +93,7 @@ return require("packer").startup(function(use)
     use("saadparwaiz1/cmp_luasnip") -- Luasnip completion source
 
     -- null-ls
-    use("jose-elias-alvarez/null-ls.nvim")
+    use("nvimtools/none-ls.nvim")
 
     -- Snippets plugin
     use("L3MON4D3/LuaSnip")
