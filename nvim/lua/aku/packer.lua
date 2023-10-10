@@ -26,6 +26,7 @@ return require("packer").startup(function(use)
     -- For Telescope (Plenary.nvim)
     use("nvim-lua/plenary.nvim")
     use("nvim-telescope/telescope.nvim")
+    use{ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
     -- for file icons
     use("kyazdani42/nvim-web-devicons")
