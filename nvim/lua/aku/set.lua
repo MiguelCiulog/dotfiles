@@ -8,8 +8,9 @@ vim.opt.expandtab = true
 
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
-vim.opt.smartindent = true
 vim.opt.wrap = false
+vim.opt.autoindent = true
+vim.opt.smartindent = true
 
 vim.opt.termguicolors = true
 vim.opt.scrolloff = 8
@@ -29,19 +30,19 @@ vim.g.mapleader = " "
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = "yes"
 
 -- Allow buffer switching without saving
 vim.opt.hidden = true
 
 vim.opt.ruler = true
-vim.opt.enc = 'utf-8'
+vim.opt.enc = "utf-8"
 vim.opt.cursorline = true
-vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard = "unnamedplus"
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-vim.opt.mouse = 'a'
+vim.opt.mouse = "a"
 vim.opt.scrolloff = 8
 
 vim.opt.list = true
-vim.opt.background = 'dark'
+vim.opt.background = "dark"
