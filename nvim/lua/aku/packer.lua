@@ -4,124 +4,133 @@
 vim.cmd([[packadd packer.nvim]])
 
 return require("packer").startup(function(use)
-    -- Packer can manage itself
-    use("wbthomason/packer.nvim")
-    use("rebelot/kanagawa.nvim")
-    use("ellisonleao/gruvbox.nvim")
+	-- Packer can manage itself
+	use("wbthomason/packer.nvim")
+	use("rebelot/kanagawa.nvim")
+	use("ellisonleao/gruvbox.nvim")
 
-    -- Top line
-    use({ "akinsho/bufferline.nvim", tag = "v2.*" })
+	-- Top line
+	use({ "akinsho/bufferline.nvim", tag = "v2.*" })
 
-    -- Bottom line :)
-    use("nvim-lualine/lualine.nvim")
+	-- Bottom line :)
+	use("nvim-lualine/lualine.nvim")
 
-    -- Language package
-    use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-    use("nvim-treesitter/nvim-treesitter-context")
-    use("lukas-reineke/indent-blankline.nvim")
+	-- Better matching
+	use({
+		"andymass/vim-matchup",
+		setup = function()
+			-- may set any options here
+			vim.g.matchup_matchparen_offscreen = { method = "popup" }
+		end,
+	})
 
-    -- Comments
-    use("numToStr/Comment.nvim")
+	-- Language package
+	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+	use("nvim-treesitter/nvim-treesitter-context")
+	use("lukas-reineke/indent-blankline.nvim")
 
-    -- For Telescope (Plenary.nvim)
-    use("nvim-lua/plenary.nvim")
-    use("nvim-telescope/telescope.nvim")
-    use{ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+	-- Comments
+	use("numToStr/Comment.nvim")
 
-    -- for file icons
-    use("kyazdani42/nvim-web-devicons")
-    use("kyazdani42/nvim-tree.lua")
+	-- For Telescope (Plenary.nvim)
+	use("nvim-lua/plenary.nvim")
+	use("nvim-telescope/telescope.nvim")
+	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 
-    -- Sudo support
-    use("lambdalisue/suda.vim")
+	-- for file icons
+	use("kyazdani42/nvim-web-devicons")
+	use("kyazdani42/nvim-tree.lua")
 
-    -- Transparent
-    use("xiyaowong/nvim-transparent")
+	-- Sudo support
+	use("lambdalisue/suda.vim")
 
-    -- LSP
-    use {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v3.x',
-        requires = {
-            --- Uncomment these if you want to manage LSP servers from neovim
-            {'williamboman/mason.nvim'},
-            {'williamboman/mason-lspconfig.nvim'},
+	-- Transparent
+	use("xiyaowong/nvim-transparent")
 
-            -- LSP Support
-            { 'neovim/nvim-lspconfig' },
-            -- Autocompletion
-            { 'hrsh7th/nvim-cmp' },
-            { 'hrsh7th/cmp-nvim-lsp' },
-            { 'L3MON4D3/LuaSnip' },
-        }
-    }
+	-- LSP
+	use({
+		"VonHeikemen/lsp-zero.nvim",
+		branch = "v3.x",
+		requires = {
+			--- Uncomment these if you want to manage LSP servers from neovim
+			{ "williamboman/mason.nvim" },
+			{ "williamboman/mason-lspconfig.nvim" },
 
-    use("neovim/nvim-lspconfig")
-    use({
-        "glepnir/lspsaga.nvim",
-        branch = "main",
-        requires = {
-            { "nvim-tree/nvim-web-devicons" },
-            --Please make sure you install markdown and markdown_inline parser
-            { "nvim-treesitter/nvim-treesitter" },
-        },
-    })
-    -- use {
-    --     "glepnir/lspsaga.nvim",
-    --     commit = 'b7b4777369b441341b2dcd45c738ea4167c11c9e'
-    -- }
+			-- LSP Support
+			{ "neovim/nvim-lspconfig" },
+			-- Autocompletion
+			{ "hrsh7th/nvim-cmp" },
+			{ "hrsh7th/cmp-nvim-lsp" },
+			{ "L3MON4D3/LuaSnip" },
+		},
+	})
 
-    -- Easier lsp config
-    use("williamboman/mason.nvim")
-    use("williamboman/mason-lspconfig.nvim")
+	use("neovim/nvim-lspconfig")
+	use({
+		"glepnir/lspsaga.nvim",
+		branch = "main",
+		requires = {
+			{ "nvim-tree/nvim-web-devicons" },
+			--Please make sure you install markdown and markdown_inline parser
+			{ "nvim-treesitter/nvim-treesitter" },
+		},
+	})
+	-- use {
+	--     "glepnir/lspsaga.nvim",
+	--     commit = 'b7b4777369b441341b2dcd45c738ea4167c11c9e'
+	-- }
 
-    -- DAP
-    use("mfussenegger/nvim-dap")
-    use("rcarriga/nvim-dap-ui")
-    use("theHamsta/nvim-dap-virtual-text")
+	-- Easier lsp config
+	use("williamboman/mason.nvim")
+	use("williamboman/mason-lspconfig.nvim")
 
-    use("leoluz/nvim-dap-go")
-    use("mfussenegger/nvim-dap-python")
+	-- DAP
+	use("mfussenegger/nvim-dap")
+	use("rcarriga/nvim-dap-ui")
+	use("theHamsta/nvim-dap-virtual-text")
 
-    -- Autocompletion plugin
-    use("hrsh7th/nvim-cmp")
+	use("leoluz/nvim-dap-go")
+	use("mfussenegger/nvim-dap-python")
 
-    -- Auto-completion
-    use("hrsh7th/cmp-buffer")    -- Cmp source for buffer words
-    use("hrsh7th/cmp-path")      -- Cmp source for path
-    use("hrsh7th/cmp-nvim-lsp")  -- Cmp source for LSP client
-    use("hrsh7th/cmp-nvim-lua")  -- Cmp source for nvim lua
-    use("saadparwaiz1/cmp_luasnip") -- Luasnip completion source
+	-- Autocompletion plugin
+	use("hrsh7th/nvim-cmp")
 
-    -- null-ls
-    use("nvimtools/none-ls.nvim")
+	-- Auto-completion
+	use("hrsh7th/cmp-buffer") -- Cmp source for buffer words
+	use("hrsh7th/cmp-path") -- Cmp source for path
+	use("hrsh7th/cmp-nvim-lsp") -- Cmp source for LSP client
+	use("hrsh7th/cmp-nvim-lua") -- Cmp source for nvim lua
+	use("saadparwaiz1/cmp_luasnip") -- Luasnip completion source
 
-    -- Snippets plugin
-    use("L3MON4D3/LuaSnip")
-    use( "rafamadriz/friendly-snippets")
+	-- null-ls
+	use("nvimtools/none-ls.nvim")
 
-    -- VSCode like pictograms on completion
-    use("onsails/lspkind.nvim")
+	-- Snippets plugin
+	use("L3MON4D3/LuaSnip")
+	use("rafamadriz/friendly-snippets")
 
-    -- Manage buffers on tab
-    use("tiagovla/scope.nvim")
+	-- VSCode like pictograms on completion
+	use("onsails/lspkind.nvim")
 
-    -- Windows
-    use("anuvyklack/windows.nvim")
-    use("anuvyklack/middleclass")
+	-- Manage buffers on tab
+	use("tiagovla/scope.nvim")
 
-    -- Git
-    use("lewis6991/gitsigns.nvim")
+	-- Windows
+	use("anuvyklack/windows.nvim")
+	use("anuvyklack/middleclass")
 
-    -- Windows
-    use("wesQ3/vim-windowswap")
+	-- Git
+	use("lewis6991/gitsigns.nvim")
 
-    -- Multiple cursors
-    use("mg979/vim-visual-multi")
+	-- Windows
+	use("wesQ3/vim-windowswap")
 
-    -- Automatic documentation
-    use({
-        "kkoomen/vim-doge",
-        run = ":call doge#install()",
-    })
+	-- Multiple cursors
+	use("mg979/vim-visual-multi")
+
+	-- Automatic documentation
+	use({
+		"kkoomen/vim-doge",
+		run = ":call doge#install()",
+	})
 end)
