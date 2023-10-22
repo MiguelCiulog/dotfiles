@@ -1,125 +1,190 @@
-local wezterm = require 'wezterm'
+local wezterm = require("wezterm")
+local act = wezterm.action
 
 return {
-    font = wezterm.font('FantasqueSansMono Nerd Font Mono'),
+    -- disable_default_key_bindings = true,
+    -- default_prog = { 'powershell.exe', '-NoLogo'},
+    default_prog = { "C:\\Windows\\system32\\wsl.exe -d fedora" },
+
+    font = wezterm.font("Mononoki Nerd Font Mono"),
     font_size = 14,
 
-    window_close_confirmation = 'NeverPrompt',
+    window_close_confirmation = "NeverPrompt",
 
     -- Tab Bar
-	enable_tab_bar = true,
-	hide_tab_bar_if_only_one_tab = true,
-	show_tab_index_in_tab_bar = false,
-	tab_bar_at_bottom = true,
+    enable_tab_bar = true,
+    hide_tab_bar_if_only_one_tab = true,
+    show_tab_index_in_tab_bar = true,
+    tab_bar_at_bottom = true,
 
-	-- General
-	window_background_opacity = 1.0,
-	window_close_confirmation = "NeverPrompt",
-    -- dpi = 81.0,
+    freetype_load_flags = "NO_HINTING",
+    enable_kitty_keyboard = true,
 
-    -- OpenGL for GPU acceleration, Software for CPU
-	front_end = "OpenGL",
-    -- X11
-	enable_wayland = true,
+    -- Colors
+    color_scheme = "GruvboxDark",
+    window_background_opacity = 0.98,
+
+    use_fancy_tab_bar = false,
+    tab_max_width = 75,
+
+    window_padding = {
+        left = 0,
+        right = 0,
+        top = 0,
+        bottom = 0,
+    },
+
+    -- Bell
+    audible_bell = "Disabled",
+    visual_bell = {
+        fade_in_function = "EaseIn",
+        fade_in_duration_ms = 50,
+        fade_out_function = "EaseOut",
+        fade_out_duration_ms = 50,
+    },
+    colors = {
+        visual_bell = "#9c9a9a",
+    },
 
     keys = {
         {
-            key = 'w',
-            mods = 'CTRL|SHIFT',
-            action = wezterm.action.CloseCurrentPane { confirm = false },
+            key = "w",
+            mods = "CTRL|SHIFT",
+            action = wezterm.action.CloseCurrentPane({ confirm = false }),
+        },
+        { key = "t",     mods = "CTRL|ALT",       action = wezterm.action.ShowTabNavigator },
+        {
+            key = "R",
+            mods = "CTRL|SHIFT",
+            action = act.PromptInputLine({
+                description = "Enter new name for tab",
+                action = wezterm.action_callback(function(window, _, line)
+                    -- line will be `nil` if they hit escape without entering anything
+                    -- An empty string if they just hit enter
+                    -- Or the actual line of text they wrote
+                    if line then
+                        window:active_tab():set_title(line)
+                    end
+                end),
+            }),
+        },
+        -- Default keybindings
+        { key = "Tab",   mods = "CTRL",           action = act.ActivateTabRelative(1) },
+        { key = "Tab",   mods = "SHIFT|CTRL",     action = act.ActivateTabRelative(-1) },
+
+        { key = "!",     mods = "CTRL",           action = act.ActivateTab(0) },
+        { key = "!",     mods = "SHIFT|CTRL",     action = act.ActivateTab(0) },
+        { key = '"',     mods = "SHIFT|ALT|CTRL", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
+        { key = "#",     mods = "CTRL",           action = act.ActivateTab(2) },
+        { key = "#",     mods = "SHIFT|CTRL",     action = act.ActivateTab(2) },
+        { key = "$",     mods = "CTRL",           action = act.ActivateTab(3) },
+        { key = "$",     mods = "SHIFT|CTRL",     action = act.ActivateTab(3) },
+        { key = "%",     mods = "CTRL",           action = act.ActivateTab(4) },
+        { key = "%",     mods = "SHIFT|CTRL",     action = act.ActivateTab(4) },
+        { key = "%",     mods = "ALT|CTRL",       action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+        { key = "%",     mods = "SHIFT|ALT|CTRL", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+        { key = "&",     mods = "CTRL",           action = act.ActivateTab(6) },
+        { key = "&",     mods = "SHIFT|CTRL",     action = act.ActivateTab(6) },
+        { key = "'",     mods = "SHIFT|ALT|CTRL", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
+        { key = "(",     mods = "CTRL",           action = act.ActivateTab(-1) },
+        { key = "(",     mods = "SHIFT|CTRL",     action = act.ActivateTab(-1) },
+        { key = ")",     mods = "CTRL",           action = act.ResetFontSize },
+        { key = ")",     mods = "SHIFT|CTRL",     action = act.ResetFontSize },
+        { key = "*",     mods = "CTRL",           action = act.ActivateTab(7) },
+        { key = "*",     mods = "SHIFT|CTRL",     action = act.ActivateTab(7) },
+        { key = "+",     mods = "CTRL",           action = act.IncreaseFontSize },
+        { key = "+",     mods = "SHIFT|CTRL",     action = act.IncreaseFontSize },
+        { key = "-",     mods = "CTRL",           action = act.DecreaseFontSize },
+        { key = "-",     mods = "SHIFT|CTRL",     action = act.DecreaseFontSize },
+        { key = "-",     mods = "SUPER",          action = act.DecreaseFontSize },
+        { key = "0",     mods = "CTRL",           action = act.ResetFontSize },
+        { key = "0",     mods = "SHIFT|CTRL",     action = act.ResetFontSize },
+        { key = "0",     mods = "SUPER",          action = act.ResetFontSize },
+        { key = "1",     mods = "SHIFT|CTRL",     action = act.ActivateTab(0) },
+        { key = "1",     mods = "SUPER",          action = act.ActivateTab(0) },
+        { key = "2",     mods = "SHIFT|CTRL",     action = act.ActivateTab(1) },
+        { key = "2",     mods = "SUPER",          action = act.ActivateTab(1) },
+        { key = "3",     mods = "SHIFT|CTRL",     action = act.ActivateTab(2) },
+        { key = "3",     mods = "SUPER",          action = act.ActivateTab(2) },
+        { key = "4",     mods = "SHIFT|CTRL",     action = act.ActivateTab(3) },
+        { key = "4",     mods = "SUPER",          action = act.ActivateTab(3) },
+        { key = "5",     mods = "SHIFT|CTRL",     action = act.ActivateTab(4) },
+        { key = "5",     mods = "SHIFT|ALT|CTRL", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+        { key = "5",     mods = "SUPER",          action = act.ActivateTab(4) },
+        { key = "6",     mods = "SHIFT|CTRL",     action = act.ActivateTab(5) },
+        { key = "6",     mods = "SUPER",          action = act.ActivateTab(5) },
+        { key = "7",     mods = "SHIFT|CTRL",     action = act.ActivateTab(6) },
+        { key = "7",     mods = "SUPER",          action = act.ActivateTab(6) },
+        { key = "8",     mods = "SHIFT|CTRL",     action = act.ActivateTab(7) },
+        { key = "8",     mods = "SUPER",          action = act.ActivateTab(7) },
+        { key = "9",     mods = "SHIFT|CTRL",     action = act.ActivateTab(-1) },
+        { key = "9",     mods = "SUPER",          action = act.ActivateTab(-1) },
+        { key = "=",     mods = "CTRL",           action = act.IncreaseFontSize },
+        { key = "=",     mods = "SHIFT|CTRL",     action = act.IncreaseFontSize },
+        { key = "=",     mods = "SUPER",          action = act.IncreaseFontSize },
+        { key = "@",     mods = "CTRL",           action = act.ActivateTab(1) },
+        { key = "@",     mods = "SHIFT|CTRL",     action = act.ActivateTab(1) },
+        { key = "C",     mods = "CTRL",           action = act.CopyTo("Clipboard") },
+        { key = "C",     mods = "SHIFT|CTRL",     action = act.CopyTo("Clipboard") },
+        { key = "F",     mods = "CTRL",           action = act.Search("CurrentSelectionOrEmptyString") },
+        { key = "F",     mods = "SHIFT|CTRL",     action = act.Search("CurrentSelectionOrEmptyString") },
+        { key = "K",     mods = "CTRL",           action = act.ClearScrollback("ScrollbackOnly") },
+        { key = "K",     mods = "SHIFT|CTRL",     action = act.ClearScrollback("ScrollbackOnly") },
+        { key = "L",     mods = "CTRL",           action = act.ShowDebugOverlay },
+        { key = "L",     mods = "SHIFT|CTRL",     action = act.ShowDebugOverlay },
+        { key = "M",     mods = "CTRL",           action = act.Hide },
+        { key = "M",     mods = "SHIFT|CTRL",     action = act.Hide },
+        { key = "N",     mods = "CTRL",           action = act.SpawnWindow },
+        { key = "N",     mods = "SHIFT|CTRL",     action = act.SpawnWindow },
+        { key = "P",     mods = "CTRL",           action = act.ActivateCommandPalette },
+        { key = "P",     mods = "SHIFT|CTRL",     action = act.ActivateCommandPalette },
+        { key = "R",     mods = "CTRL",           action = act.ReloadConfiguration },
+        { key = "R",     mods = "SHIFT|CTRL",     action = act.ReloadConfiguration },
+        { key = "T",     mods = "CTRL",           action = act.SpawnTab("CurrentPaneDomain") },
+        { key = "T",     mods = "SHIFT|CTRL",     action = act.SpawnTab("CurrentPaneDomain") },
+        {
+            key = "U",
+            mods = "CTRL",
+            action = act.CharSelect({ copy_on_select = true, copy_to = "ClipboardAndPrimarySelection" }),
+        },
+        {
+            key = "U",
+            mods = "SHIFT|CTRL",
+            action = act.CharSelect({ copy_on_select = true, copy_to = "ClipboardAndPrimarySelection" }),
+        },
+        { key = "V", mods = "CTRL",        action = act.PasteFrom("Clipboard") },
+        { key = "V", mods = "SHIFT|CTRL",  action = act.PasteFrom("Clipboard") },
+        { key = "X", mods = "CTRL",        action = act.ActivateCopyMode },
+        { key = "X", mods = "SHIFT|CTRL",  action = act.ActivateCopyMode },
+        { key = "Z", mods = "CTRL",        action = act.TogglePaneZoomState },
+        { key = "Z", mods = "SHIFT|CTRL",  action = act.TogglePaneZoomState },
+        { key = "[", mods = "SHIFT|SUPER", action = act.ActivateTabRelative(-1) },
+        { key = "]", mods = "SHIFT|SUPER", action = act.ActivateTabRelative(1) },
+        { key = "^", mods = "CTRL",        action = act.ActivateTab(5) },
+        { key = "^", mods = "SHIFT|CTRL",  action = act.ActivateTab(5) },
+        { key = "_", mods = "CTRL",        action = act.DecreaseFontSize },
+        { key = "_", mods = "SHIFT|CTRL",  action = act.DecreaseFontSize },
+        { key = "c", mods = "SHIFT|CTRL",  action = act.CopyTo("Clipboard") },
+        { key = "c", mods = "SUPER",       action = act.CopyTo("Clipboard") },
+        { key = "f", mods = "SHIFT|CTRL",  action = act.Search("CurrentSelectionOrEmptyString") },
+        { key = "f", mods = "SUPER",       action = act.Search("CurrentSelectionOrEmptyString") },
+        { key = "k", mods = "SHIFT|CTRL",  action = act.ClearScrollback("ScrollbackOnly") },
+        { key = "k", mods = "SUPER",       action = act.ClearScrollback("ScrollbackOnly") },
+        { key = "l", mods = "SHIFT|CTRL",  action = act.ShowDebugOverlay },
+        { key = "m", mods = "SHIFT|CTRL",  action = act.Hide },
+        { key = "m", mods = "SUPER",       action = act.Hide },
+        { key = "n", mods = "SHIFT|CTRL",  action = act.SpawnWindow },
+        { key = "n", mods = "SUPER",       action = act.SpawnWindow },
+        { key = "p", mods = "SHIFT|CTRL",  action = act.ActivateCommandPalette },
+        { key = "r", mods = "SHIFT|CTRL",  action = act.ReloadConfiguration },
+        { key = "r", mods = "SUPER",       action = act.ReloadConfiguration },
+        { key = "t", mods = "SHIFT|CTRL",  action = act.SpawnTab("CurrentPaneDomain") },
+        { key = "t", mods = "SUPER",       action = act.SpawnTab("CurrentPaneDomain") },
+        {
+            key = "u",
+            mods = "SHIFT|CTRL",
+            action = act.CharSelect({ copy_on_select = true, copy_to = "ClipboardAndPrimarySelection" }),
         },
     },
-
-    -- Kanagawa
-    color_scheme = "kanagawabones",
-    window_background_opacity = 0.97,
-
-    -- use_fancy_tab_bar = false,
-    window_frame = {
-
-        font = wezterm.font{family = 'FantasqueSansMono Nerd Font Mono',
-            weight = 'Bold'},
-        font_size = 13,
-
-        active_titlebar_bg= "#1F1F28",
-        -- active_titlebar_bg= "#000000",
-        -- inactive_titlebar_bg= "#DDD8BB",
-        -- inactive_titlebar_bg= "#000000",
-
-    --     fg_color = "#DDD8BB",
-    --     bg_color = "#1F1F28",
-    },
-
-    -- use_fancy_tab_bar = false,
-
-    colors = {
-        tab_bar = {
-          -- The color of the strip that goes along the top of the window
-          -- (does not apply when fancy tab bar is in use)
-          background = '#938AA9',
-
-          -- The active tab is the one that has focus in the window
-          active_tab = {
-            -- The color of the background area for the tab
-            bg_color = '#1F1F28',
-            -- The color of the text for the tab
-            fg_color = '#DCD7BA',
-          },
-
-          -- Inactive tabs are the tabs that do not have focus
-          inactive_tab = {
-            bg_color = '#16161D',
-            fg_color = '#727169',
-
-            -- The same options that were listed under the `active_tab` section above
-            -- can also be used for `inactive_tab`.
-          },
-
-          -- You can configure some alternate styling when the mouse pointer
-          -- moves over inactive tabs
-          inactive_tab_hover = {
-            bg_color = '#16161D',
-            fg_color = '#727169',
-            italic = true,
-
-            -- The same options that were listed under the `active_tab` section above
-            -- can also be used for `inactive_tab_hover`.
-          },
-
-          -- The new tab button that let you create new tabs
-          new_tab = {
-            bg_color = '#16161D',
-            fg_color = '#727169',
-
-            -- The same options that were listed under the `active_tab` section above
-            -- can also be used for `new_tab`.
-          },
-
-          -- You can configure some alternate styling when the mouse pointer
-          -- moves over the new tab button
-          new_tab_hover = {
-            bg_color = '#3b3052',
-            fg_color = '#C8C093',
-            italic = true,
-
-            -- The same options that were listed under the `active_tab` section above
-            -- can also be used for `new_tab_hover`.
-          },
-        },
-    },
-
-
-    -- force_reverse_video_cursor = true,
-    --     foreground    = "#DDD8BB",
-    --     background    = "#1F1F28",
-    --     cursor_fg     = "#1F1F28",
-    --     cursor_bg     = "#E6E0C2",
-    --     cursor_border = "#1F1F28",
-    --     selection_fg  = "#DDD8BB",
-    --     selection_bg  = "#49473E",
-    --     ansi = {"#1F1F28", "#E46A78", "#98BC6D", "#E5C283", "#7EB3C9",
-    --     "#957FB8", "#7EB3C9", "#DDD8BB"},
-
-    --     brights = {"#3C3C51", "#EC818C", "#9EC967", "#F1C982", "#7BC2DF",
-    --     "#A98FD2", "#7BC2DF", "#A8A48D"},
 }
+
