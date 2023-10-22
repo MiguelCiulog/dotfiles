@@ -70,7 +70,8 @@ ZSH_THEME="wezm+"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-nvm zsh-z)
+# plugins=(git zsh-nvm zsh-z)
+plugins=(git zsh-nvm zoxide fzf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -97,13 +98,24 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 
 # Aliases
-alias v="nvim"
 alias lg="lazygit"
 alias cls="clear"
-# alias ls="ls -hF --color"
-# alias ll="ls -thl --color"
-# alias ls="lsd -hF --color"
-# alias ll="lsd -thl --color"
+alias lt="lsd --tree"
+alias l="lsd -Al --timesort --date +"%m/%d/%Y %H:%M:%S""
+
+source /usr/share/fzf/shell/key-bindings.zsh
+# export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --follow --hidden --color never'
+export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!.git" '
+
+# morhetz/gruvbox
+export FZF_DEFAULT_OPTS='--layout=reverse --border --inline-info --color=bg+:-1,bg:-1,spinner:#fb4934,hl:#928374,fg:#ebdbb2,header:#928374,info:#8ec07c,pointer:#fb4934,marker:#fb4934,fg+:#ebdbb2,prompt:#fb4934,hl+:#fb4934'
+
+# export BAT_THEME="base16"
+export BAT_THEME="gruvbox-dark"
+function v () {
+    fzf --preview 'bat --style numbers,changes --color=always {} | head -50' --bind 'enter:become(nvim {+})'
+}
+
 function cs () {
     cd "$@" && ls
 }
@@ -118,6 +130,7 @@ alias pyvenv="source ./.venv/bin/activate"
 export PATH=$PATH:/usr/local/go/bin
 # Go Install
 export PATH=$PATH:~/go/bin
+# Python stuff
 export PATH=$PATH:/home/macr/.local/bin
 
 eval "$(starship init zsh)"
@@ -127,3 +140,4 @@ _ls_colors="ow=34;1:"
 LS_COLORS+=$_ls_colors
 zstyle ':completion:*:default' list-colors "${(s.:.)_ls_colors}"
 
+alias vlc="flatpak run org.videolan.VLC"
