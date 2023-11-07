@@ -42,6 +42,13 @@ require("mason-lspconfig").setup({
 	},
 })
 
+-- Set up extra languages (Not in mason)
+require("lspconfig").gdscript.setup({
+    flags = { debounce_text_changes = 300 },
+    filetypes = { "gd", "gdscript", "gdscript3" },
+    capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+})
+
 -- CMP
 
 -- local has_words_before = function()
@@ -171,13 +178,6 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 --     end,
 -- })
 
--- -- Set up extra languages (Not in mason)
--- require("lspconfig").gdscript.setup({
---     on_attach = on_attach,
---     flags = { debounce_text_changes = 300 },
---     filetypes = { "gd", "gdscript", "gdscript3" },
---     capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
--- })
 
 -- nvim_lsp.pyright.setup({
 --     on_attach = on_attach,
