@@ -10,7 +10,8 @@ return require("packer").startup(function(use)
 	use("ellisonleao/gruvbox.nvim")
 
 	-- Top line
-	use({ "akinsho/bufferline.nvim", tag = "v2.*" })
+	-- use({ "akinsho/bufferline.nvim", tag = "v2.*" })
+    use("romgrk/barbar.nvim")
 
 	-- Bottom line :)
 	use("nvim-lualine/lualine.nvim")
@@ -35,7 +36,7 @@ return require("packer").startup(function(use)
 	-- For Telescope (Plenary.nvim)
 	use("nvim-lua/plenary.nvim")
 	use("nvim-telescope/telescope.nvim")
-	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+	-- use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 
 	-- for file icons
 	use("kyazdani42/nvim-web-devicons")
@@ -126,7 +127,7 @@ return require("packer").startup(function(use)
 	use("wesQ3/vim-windowswap")
 
 	-- Multiple cursors
-	use("mg979/vim-visual-multi")
+	-- use("mg979/vim-visual-multi")
 
 	-- Automatic documentation
 	use({
