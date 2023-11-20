@@ -17,7 +17,7 @@ return {
         },
         {
             label = 'WSL Fedora',
-            args = { 'C:\\Windows\\system32\\wsl.exe', '-d fedora' },
+            args = { 'C:\\Windows\\system32\\wsl.exe -d fedora'},
         },
     },
 
