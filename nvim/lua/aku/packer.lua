@@ -6,12 +6,13 @@ vim.cmd([[packadd packer.nvim]])
 return require("packer").startup(function(use)
 	-- Packer can manage itself
 	use("wbthomason/packer.nvim")
+
+	-- Themes
 	use("rebelot/kanagawa.nvim")
 	use("ellisonleao/gruvbox.nvim")
 
 	-- Top line
-	-- use({ "akinsho/bufferline.nvim", tag = "v2.*" })
-    use("romgrk/barbar.nvim")
+	use("romgrk/barbar.nvim")
 
 	-- Bottom line :)
 	use("nvim-lualine/lualine.nvim")
@@ -21,14 +22,13 @@ return require("packer").startup(function(use)
 		"andymass/vim-matchup",
 		setup = function()
 			-- may set any options here
-			vim.g.matchup_matchparen_offscreen = { method = "popup" }
+			vim.g.matchup_matchparen_offscreen = { method = "status" }
 		end,
 	})
 
 	-- Language package
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 	use("nvim-treesitter/nvim-treesitter-context")
-	use("lukas-reineke/indent-blankline.nvim")
 
 	-- Comments
 	use("numToStr/Comment.nvim")
@@ -36,7 +36,6 @@ return require("packer").startup(function(use)
 	-- For Telescope (Plenary.nvim)
 	use("nvim-lua/plenary.nvim")
 	use("nvim-telescope/telescope.nvim")
-	-- use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 
 	-- for file icons
 	use("kyazdani42/nvim-web-devicons")
@@ -66,20 +65,13 @@ return require("packer").startup(function(use)
 		},
 	})
 
-	use("neovim/nvim-lspconfig")
 	use({
 		"nvimdev/lspsaga.nvim",
 		branch = "main",
 		requires = {
 			{ "nvim-tree/nvim-web-devicons" },
-			--Please make sure you install markdown and markdown_inline parser
-			{ "nvim-treesitter/nvim-treesitter" },
 		},
 	})
-	-- use {
-	--     "glepnir/lspsaga.nvim",
-	--     commit = 'b7b4777369b441341b2dcd45c738ea4167c11c9e'
-	-- }
 
 	-- Easier lsp config
 	use("williamboman/mason.nvim")
@@ -93,13 +85,9 @@ return require("packer").startup(function(use)
 	use("leoluz/nvim-dap-go")
 	use("mfussenegger/nvim-dap-python")
 
-	-- Autocompletion plugin
-	use("hrsh7th/nvim-cmp")
-
 	-- Auto-completion
 	use("hrsh7th/cmp-buffer") -- Cmp source for buffer words
 	use("hrsh7th/cmp-path") -- Cmp source for path
-	use("hrsh7th/cmp-nvim-lsp") -- Cmp source for LSP client
 	use("hrsh7th/cmp-nvim-lua") -- Cmp source for nvim lua
 	use("saadparwaiz1/cmp_luasnip") -- Luasnip completion source
 
@@ -123,15 +111,6 @@ return require("packer").startup(function(use)
 	-- Git
 	use("lewis6991/gitsigns.nvim")
 
-	-- Windows
-	use("wesQ3/vim-windowswap")
-
-	-- Multiple cursors
-	-- use("mg979/vim-visual-multi")
-
 	-- Automatic documentation
-	use({
-		"kkoomen/vim-doge",
-		run = ":call doge#install()",
-	})
+	use("danymat/neogen")
 end)
