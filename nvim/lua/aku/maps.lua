@@ -14,9 +14,13 @@ map('n', '<leader>C', '"_C')
 map('v', '<leader>C', '"_C')
 map('o', '<leader>C', '"_C')
 
--- Paste the last thing yanked, not deleted
-map('n', '<leader>p', '"0p')
-map('n', '<leader>P', '"0P')
+-- Paste from the clipboard
+-- map('n', '<leader>p', '"+p', {silent = true})
+-- map('n', '<leader>P', '"+P', {silent = true})
+
+-- Yank to clipboard
+map('n', '<leader>y', '"+y', {silent = true})
+map('n', '<leader>Y', '"+Y', {silent = true})
 
 -- Select everything ggVG
 map('n', '<c-a>', 'ggVG')
