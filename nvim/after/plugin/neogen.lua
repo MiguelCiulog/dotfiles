@@ -1,1 +1,8 @@
-require('neogen').setup({ snippet_engine = "luasnip" })
+require("neogen").setup({
+	snippet_engine = "luasnip",
+	languages = {
+		python = {
+			template = { annotation_convention = "reST" },
+		},
+	},
+})
