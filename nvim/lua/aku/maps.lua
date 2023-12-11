@@ -15,8 +15,8 @@ map('v', '<leader>C', '"_C')
 map('o', '<leader>C', '"_C')
 
 -- Paste from the clipboard
--- map('n', '<leader>p', '"+p', {silent = true})
--- map('n', '<leader>P', '"+P', {silent = true})
+map('n', '<leader>p', '"+p', {silent = true})
+map('n', '<leader>P', '"+P', {silent = true})
 
 -- Yank to clipboard
 map('n', '<leader>y', '"+y', {silent = true})
