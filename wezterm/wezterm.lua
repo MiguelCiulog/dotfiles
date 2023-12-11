@@ -6,20 +6,20 @@ return {
     default_prog = { 'powershell.exe', '-NoLogo' },
     -- default_prog = { 'pwsh.exe', '-NoLogo' },
     -- default_prog = { "C:\\Windows\\system32\\wsl.exe -d fedora" },
-    launch_menu = {
-        {
-            label = 'Powershell',
-            args = { 'powershell.exe', '-NoLogo' },
-        },
-        {
-            label = 'Pwsh',
-            args = { 'pwsh.exe', '-NoLogo' },
-        },
-        {
-            label = 'WSL Fedora',
-            args = { 'C:\\Windows\\system32\\wsl.exe -d fedora'},
-        },
-    },
+    -- launch_menu = {
+    --     {
+    --         label = 'Powershell',
+    --         args = { 'powershell.exe', '-NoLogo' },
+    --     },
+    --     {
+    --         label = 'Pwsh',
+    --         args = { 'pwsh.exe', '-NoLogo' },
+    --     },
+    --     {
+    --         label = 'WSL Fedora',
+    --         args = { 'C:\\Windows\\system32\\wsl.exe -d fedora'},
+    --     },
+    -- },
 
     font = wezterm.font("Mononoki Nerd Font Mono"),
     font_size = 14,
