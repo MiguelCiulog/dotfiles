@@ -66,7 +66,6 @@ end
 -- Clipboard support for wsl
 local in_wsl = os.getenv("WSL_DISTRO_NAME") ~= nil
 if in_wsl then
-    local uwu = os.getenv("win32yank.exe") ~= nil
     vim.g.clipboard = {
         name = "wsl clipboard",
         copy = { ["+"] = { "clip.exe" }, ["*"] = { "clip.exe" } },
