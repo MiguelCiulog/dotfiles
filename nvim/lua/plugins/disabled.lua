@@ -6,4 +6,5 @@ return {
   { "noice.nvim", enabled = false },
   { "todo-comments.nvim", enabled = false },
   { "trouble.nvim", enabled = false },
+  { "dressing.nvim", enabled = false}
 }

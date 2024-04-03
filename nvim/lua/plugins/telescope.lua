@@ -3,6 +3,11 @@ return {
     -- "nvim-telescope/telescope.nvim",
     "telescope.nvim",
     -- replace all keymaps with custom mapping
+    opts = {
+      defaults = {
+        path_display = {"truncate"},
+      },
+    },
     keys = function()
       return {
         { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
