@@ -76,9 +76,7 @@ endfun
 vim.cmd("command! -nargs=0 Trim call Trim()")
 
 -- formatting
-map({ "n", "v" }, "<leader>fr", function()
-  require("lazyvim.util").format({ force = true })
-end, { desc = "Format" })
+map("n", "==", "<Cmd>LazyFormat<CR>", { desc = "Format" })
 
 -----------------------------------------------------
 -------------- Removing cringe keymaps --------------
