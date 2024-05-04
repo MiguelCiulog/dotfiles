@@ -15,7 +15,7 @@ lsp_zero.on_attach(function(_, bufnr)
 	vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, { buffer = bufnr })
 	vim.keymap.set("n", "<leader>ac", vim.lsp.buf.code_action, { buffer = bufnr })
 
-	vim.keymap.set("n", "<space>fr", function()
+	vim.keymap.set("n", "==", function()
 		vim.lsp.buf.format({ async = true })
 	end, { buffer = bufnr })
 end)
