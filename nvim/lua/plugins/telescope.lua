@@ -5,7 +5,7 @@ return {
     -- replace all keymaps with custom mapping
     opts = {
       defaults = {
-        path_display = {"truncate"},
+        path_display = { "filename_first" },
       },
     },
     keys = function()
