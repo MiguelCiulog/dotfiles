@@ -3,6 +3,7 @@ return {
   { "ellisonleao/gruvbox.nvim" },
   { "rebelot/kanagawa.nvim" },
   { "felipeagc/fleet-theme-nvim" },
+  { "nyoom-engineering/oxocarbon.nvim" },
 
   -- Configure LazyVim to load gruvbox
   {
@@ -10,7 +11,8 @@ return {
     opts = {
       -- colorscheme = "gruvbox",
       -- colorscheme = "kanagawa-dragon",
-      colorscheme = "fleet",
+      -- colorscheme = "fleet",
+      colorscheme = "oxocarbon",
     },
   },
 }
