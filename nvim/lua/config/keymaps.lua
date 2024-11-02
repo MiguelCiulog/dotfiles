@@ -29,10 +29,6 @@ map("n", "<leader>Y", '"+Y', { silent = true })
 map("v", "H", "^")
 map("v", "L", "$")
 
--- c-s to save in normal mode
-map("n", "<c-s>", ":w<Enter>")
-map("i", "<c-s>", "<Esc>:w<Enter>a")
-
 -- Close the current buffer and move to the previous one
 -- This replicates the idea of closing a tab
 map("n", "<leader>bd", ":bp <BAR> bd #<CR>", { silent = true })
@@ -53,6 +49,9 @@ map("i", "<C-l>", "<End>")
 
 -- formatting
 map("n", "==", "<Cmd>LazyFormat<CR>", { desc = "Format" })
+
+-- quit
+map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
 
 vim.api.nvim_create_user_command("CopyFullPath", function()
     local path = vim.fn.expand("%:p")
@@ -87,126 +86,97 @@ vim.api.nvim_create_user_command("CopyGithubCurrFilePath", function()
 end, {})
 
 -----------------------------------------------------
--------------- Removing cringe keymaps --------------
+-------------- Default lazyvim keymaps --------------
 -----------------------------------------------------
 
-local d_map = vim.keymap.del
-d_map("n", "<leader>K")
-d_map("n", "<leader>cf")
+-- This file is automatically loaded by lazyvim.config.init
 
--- Move to window using the <ctrl> hjkl keys
-d_map("n", "<C-h>")
-d_map("n", "<C-j>")
-d_map("n", "<C-k>")
-d_map("n", "<C-l>")
+-- DO NOT USE `LazyVim.safe_keymap_set` IN YOUR OWN CONFIG!!
+-- use `vim.keymap.set` instead
 
--- Resize window using <ctrl> arrow keys
-d_map("n", "<C-Up>")
-d_map("n", "<C-Down>")
-d_map("n", "<C-Left>")
-d_map("n", "<C-Right>")
+-- better up/down
+map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
+map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
+map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
+map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 
 -- Move Lines
-d_map("n", "<A-j>")
-d_map("n", "<A-k>")
-d_map("i", "<A-j>")
-d_map("i", "<A-k>")
-d_map("v", "<A-j>")
-d_map("v", "<A-k>")
+map("n", "<A-j>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })
+map("n", "<A-k>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "Move Up" })
+map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
+map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
+map("v", "<A-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
+map("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
 
--- buffers
-d_map("n", "<S-h>")
-d_map("n", "<S-l>")
-d_map("n", "[b")
-d_map("n", "]b")
-d_map("n", "<leader>bb")
-d_map("n", "<leader>`")
+-- Clear search with <esc>
+map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsearch" })
 
 -- Clear search, diff update and redraw
 -- taken from runtime/lua/_editor.lua
-d_map("n", "<leader>ur")
+map(
+  "n",
+  "<leader>ur",
+  "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
+  { desc = "Redraw / Clear hlsearch / Diff Update" }
+)
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
-d_map("n", "n")
-d_map("x", "n")
-d_map("o", "n")
-d_map("n", "N")
-d_map("x", "N")
-d_map("o", "N")
+map("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next Search Result" })
+map("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
+map("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
+map("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "Prev Search Result" })
+map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
+map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
 
--- Add undo break-points
-d_map("i", ",")
-d_map("i", ".")
-d_map("i", ";")
+-- save file
+map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
+
+--keywordprg
+map("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg" })
 
 -- better indenting
-d_map("v", "<")
-d_map("v", ">")
+map("v", "<", "<gv")
+map("v", ">", ">gv")
 
--- lazy
-d_map("n", "<leader>l")
+-- formatting
+map({ "n", "v" }, "<leader>cf", function()
+  LazyVim.format({ force = true })
+end, { desc = "Format" })
 
--- new file
-d_map("n", "<leader>fn")
+-- diagnostic
+local diagnostic_goto = function(next, severity)
+  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+  severity = severity and vim.diagnostic.severity[severity] or nil
+  return function()
+    go({ severity = severity })
+  end
+end
+map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
+map("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
+map("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
+map("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
+map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
+map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
+map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 
-d_map("n", "<leader>xl")
-d_map("n", "<leader>xq")
-
-d_map("n", "[q")
-d_map("n", "]q")
+-- stylua: ignore start
 
 -- toggle options
-d_map("n", "<leader>uf")
-d_map("n", "<leader>uF")
-d_map("n", "<leader>us")
-d_map("n", "<leader>uw")
-d_map("n", "<leader>uL")
-d_map("n", "<leader>ul")
-d_map("n", "<leader>ud")
-d_map("n", "<leader>uc")
-if vim.lsp.buf.inlay_hint or vim.lsp.inlay_hint then
-  d_map("n", "<leader>uh")
+LazyVim.toggle.map("<leader>uf", LazyVim.toggle.format())
+LazyVim.toggle.map("<leader>uF", LazyVim.toggle.format(true))
+LazyVim.toggle.map("<leader>us", LazyVim.toggle("spell", { name = "Spelling" }))
+LazyVim.toggle.map("<leader>uw", LazyVim.toggle("wrap", { name = "Wrap" }))
+LazyVim.toggle.map("<leader>uL", LazyVim.toggle("relativenumber", { name = "Relative Number" }))
+LazyVim.toggle.map("<leader>ud", LazyVim.toggle.diagnostics)
+LazyVim.toggle.map("<leader>ul", LazyVim.toggle.number)
+LazyVim.toggle.map( "<leader>uc", LazyVim.toggle("conceallevel", { values = { 0, vim.o.conceallevel > 0 and vim.o.conceallevel or 2 } }))
+LazyVim.toggle.map("<leader>uT", LazyVim.toggle.treesitter)
+LazyVim.toggle.map("<leader>ub", LazyVim.toggle("background", { values = { "light", "dark" }, name = "Background" }))
+if vim.lsp.inlay_hint then
+  LazyVim.toggle.map("<leader>uh", LazyVim.toggle.inlay_hints)
 end
-d_map("n", "<leader>uT")
-d_map("n", "<leader>ub")
-
--- lazygit
-d_map("n", "<leader>gg")
-d_map("n", "<leader>gG")
-
--- quit
-d_map("n", "<leader>qq")
 
 -- highlights under cursor
-d_map("n", "<leader>ui")
+map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
+map("n", "<leader>uI", "<cmd>InspectTree<cr>", { desc = "Inspect Tree" })
 
--- LazyVim Changelog
-d_map("n", "<leader>L")
-
--- floating terminal
-d_map("n", "<leader>ft")
-d_map("n", "<leader>fT")
-d_map("n", "<c-/>")
-d_map("n", "<c-_>")
-
--- Terminal d_mappings
-d_map("t", "<esc><esc>")
-d_map("t", "<C-h>")
-d_map("t", "<C-j>")
-d_map("t", "<C-k>")
-d_map("t", "<C-l>")
-d_map("t", "<C-/>")
-d_map("t", "<c-_>")
-
--- windows
-d_map("n", "<leader>wd")
-d_map("n", "<leader>-")
-d_map("n", "<leader>|")
-
--- tabs
-d_map("n", "<leader><tab>l")
-d_map("n", "<leader><tab>f")
-d_map("n", "<leader><tab><tab>")
-d_map("n", "<leader><tab>]")
-d_map("n", "<leader><tab>d")
-d_map("n", "<leader><tab>[")
