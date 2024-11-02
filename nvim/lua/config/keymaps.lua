@@ -26,25 +26,12 @@ map("n", "<leader>y", '"+y', { silent = true })
 map("n", "<leader>Y", '"+Y', { silent = true })
 
 -- Remap go to end of line ($) and go to start of line (^)
-map("n", "H", "^")
-map("n", "L", "$")
 map("v", "H", "^")
 map("v", "L", "$")
 
 -- c-s to save in normal mode
 map("n", "<c-s>", ":w<Enter>")
 map("i", "<c-s>", "<Esc>:w<Enter>a")
-
--- Press s to add an extra line
--- The o<Esc>^Da is for deleting comments on the start of the line
-map("n", "<c-Space>", 'o<Esc>^"_D')
-
--- Backspace in visual mode deletes selection
-map("v", "<BS>", "d")
-
--- active c-backspace and alt-kspace to delete
-map("i", "<C-BS>", "<C-o>db") -- TODO
-map("i", "<C-Del>", "<C-o>dw")
 
 -- Close the current buffer and move to the previous one
 -- This replicates the idea of closing a tab
@@ -63,17 +50,6 @@ map("n", "<leader>td", ":tabclose<CR>", { silent = true })
 -- go to beginning and end
 map("i", "<C-h>", "<ESC>^i")
 map("i", "<C-l>", "<End>")
-
--- Function to trim extra whitespace in whole file
-vim.cmd([[
-function! Trim()
-    let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
-endfun
-]])
-
-vim.cmd("command! -nargs=0 Trim call Trim()")
 
 -- formatting
 map("n", "==", "<Cmd>LazyFormat<CR>", { desc = "Format" })
@@ -191,10 +167,7 @@ d_map("t", "<C-/>")
 d_map("t", "<c-_>")
 
 -- windows
-d_map("n", "<leader>ww")
 d_map("n", "<leader>wd")
-d_map("n", "<leader>w-")
-d_map("n", "<leader>w|")
 d_map("n", "<leader>-")
 d_map("n", "<leader>|")
 

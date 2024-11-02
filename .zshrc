@@ -71,7 +71,7 @@ ZSH_THEME="wezm+"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git zsh-nvm zsh-z)
-plugins=(git zsh-nvm zoxide fzf)
+plugins=(git zoxide fzf asdf)
 
 source $ZSH/oh-my-zsh.sh
 
