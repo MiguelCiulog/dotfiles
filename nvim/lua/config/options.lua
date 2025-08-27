@@ -41,3 +41,4 @@ end
 --     cache_enabled = false,
 --   }
 -- end
+vim.g.snacks_animate = false

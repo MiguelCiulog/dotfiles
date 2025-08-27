@@ -100,8 +100,8 @@ source $ZSH/oh-my-zsh.sh
 # Aliases
 alias lg="lazygit"
 alias cls="clear"
-alias lt="lsd --tree"
-alias l="lsd -Al --timesort --date +"%m/%d/%Y %H:%M:%S""
+# alias lt="lsd --tree"
+# alias l="lsd -Al --timesort --date +"%m/%d/%Y %H:%M:%S""
 
 source /usr/share/fzf/shell/key-bindings.zsh
 # export FZF_CTRL_T_COMMAND="rg --files --no-ignore-vcs --glob '!*/{.git,node_modules}/**'"
@@ -112,7 +112,6 @@ export FZF_ALT_C_COMMAND="fd --type d --hidden --no-ignore-vcs --exclude node_mo
 # morhetz/gruvbox
 export FZF_DEFAULT_OPTS='--layout=reverse --border --inline-info --color=bg+:-1,bg:-1,spinner:#fb4934,hl:#928374,fg:#ebdbb2,header:#928374,info:#8ec07c,pointer:#fb4934,marker:#fb4934,fg+:#ebdbb2,prompt:#fb4934,hl+:#fb4934'
 
-# export BAT_THEME="base16"
 export BAT_THEME="gruvbox-dark"
 function v () {
     fzf --preview 'bat --style numbers,changes --color=always {} | head -50' --bind 'enter:become(nvim {+})'
@@ -122,14 +121,12 @@ function cs () {
     cd "$@" && ls
 }
 
-alias pyvenv="source ./.venv/bin/activate"
-
 # Actual Golang
-export PATH=$PATH:/usr/local/go/bin
+# export PATH=$PATH:/usr/local/go/bin
 # Go Install
-export PATH=$PATH:~/go/bin
+# export PATH=$PATH:~/go/bin
 # Python stuff
-export PATH=$PATH:/home/macr/.local/bin
+# export PATH=$PATH:/home/macr/.local/bin
 
 eval "$(starship init zsh)"
 
@@ -137,5 +134,3 @@ eval "$(starship init zsh)"
 _ls_colors="ow=34;1:"
 LS_COLORS+=$_ls_colors
 zstyle ':completion:*:default' list-colors "${(s.:.)_ls_colors}"
-
-alias vlc="flatpak run org.videolan.VLC"
