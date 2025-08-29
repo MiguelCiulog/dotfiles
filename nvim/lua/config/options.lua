@@ -12,6 +12,8 @@ vim.g.autoformat = false
 
 vim.opt.colorcolumn = "100"
 
+vim.opt.clipboard = ""
+
 if vim.g.neovide then
   vim.o.guifont = "Mononoki_Nerd_Font_Mono:h13"
 

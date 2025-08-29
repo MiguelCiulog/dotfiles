@@ -3,48 +3,21 @@
 -- Add any additional keymaps here
 local map = vim.keymap.set
 
--- Delete without yank
-map("n", "d", '"_d')
-map("v", "d", '"_d')
--- map("o", "<leader>d", '"_d')
+-- Cringe
 map("n", "x", '"_x')
 map("n", "X", '"_X')
 
-map("n", "c", '"_c')
-map("v", "c", '"_c')
--- map("o", "<leader>c", '"_c')
-map("n", "C", '"_C')
-map("v", "C", '"_C')
--- map("o", "<leader>C", '"_C')
-
--- Paste from the clipboard
-map("n", "<leader>p", '"+p', { silent = true })
-map("n", "<leader>P", '"+P', { silent = true })
-
--- Yank to clipboard
-map("n", "<leader>y", '"+y', { silent = true })
-map("n", "<leader>Y", '"+Y', { silent = true })
+-- Delete with register inside neovim, but clipboard only on Yank
+map("n", "y", '"+y')
+map("v", "y", '"+y')
 
 -- Remap go to end of line ($) and go to start of line (^)
-map("v", "H", "^")
-map("v", "L", "$")
-
--- Close the current buffer and move to the previous one
--- This replicates the idea of closing a tab
-map("n", "<leader>bd", ":bp <BAR> bd #<CR>", { silent = true })
--- Force quit
-map("n", "<leader>bD", ":bp <BAR> bd! #<CR>", { silent = true })
+map("n", "H", "^")
+map("n", "L", "$")
 
 -- Change buffer to next/previous
 map("n", "<C-p>", ":bnext<CR>", { silent = true })
 map("n", "<C-n>", ":bprevious<CR>", { silent = true })
-
--- Add/remove tab/workspace
-map("n", "<leader>tn", ":tabnew | Telescope find_files<CR>", { silent = true })
-map("n", "<leader>td", ":tabclose<CR>", { silent = true })
-
--- formatting
-map("n", "==", "<Cmd>LazyFormat<CR>", { desc = "Format" })
 
 vim.api.nvim_create_user_command("CopyFullPath", function()
   local path = vim.fn.expand("%:p")
