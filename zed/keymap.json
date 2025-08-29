@@ -18,8 +18,10 @@
       "H": "vim::FirstNonWhitespace",
       "L": "vim::EndOfLine",
       "space f f": "file_finder::Toggle",
-      // "space f g": "project_search::SearchInNew",
-      "space f g": "pane::DeploySearch",
+      // "space f g": "pane::DeploySearch",
+      "space space": "file_finder::Toggle",
+      "space s g": "pane::DeploySearch",
+      "space /": "pane::DeploySearch",
       "ctrl-p": "pane::ActivateNextItem",
       "ctrl-n": "pane::ActivatePrevItem",
 
@@ -30,14 +32,11 @@
       "ctrl-shift-d": "vim::ScrollDown",
       "ctrl-d": ["workspace::SendKeystrokes", "ctrl-shift-d z z"],
 
-      // "n": ["vim::MoveToNextMatch", "zz"],
-      // "N": ["vim::MoveToPrevMatch", "zz"],
-
       "[ e": "editor::GoToPrevDiagnostic",
       "] e": "editor::GoToDiagnostic",
 
       "= =": "editor::Format",
-      "space a c": "editor::ToggleCodeActions",
+      "space c a": "editor::ToggleCodeActions",
       "ctrl-g": "outline::Toggle"
     }
   },
