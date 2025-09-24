@@ -100,10 +100,8 @@ source $ZSH/oh-my-zsh.sh
 # Aliases
 alias lg="lazygit"
 alias cls="clear"
-# alias lt="lsd --tree"
-# alias l="lsd -Al --timesort --date +"%m/%d/%Y %H:%M:%S""
 
-source /usr/share/fzf/shell/key-bindings.zsh
+source /usr/share/fzf/key-bindings.zsh
 # export FZF_CTRL_T_COMMAND="rg --files --no-ignore-vcs --glob '!*/{.git,node_modules}/**'"
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --no-ignore-vcs --exclude node_modules --exclude .git"
 export FZF_CTRL_T_COMMAND="fd --type f --hidden --no-ignore-vcs --exclude node_modules --exclude .git"
@@ -120,13 +118,6 @@ function v () {
 function cs () {
     cd "$@" && ls
 }
-
-# Actual Golang
-# export PATH=$PATH:/usr/local/go/bin
-# Go Install
-# export PATH=$PATH:~/go/bin
-# Python stuff
-# export PATH=$PATH:/home/macr/.local/bin
 
 eval "$(starship init zsh)"
 
