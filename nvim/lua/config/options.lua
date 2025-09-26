@@ -2,10 +2,10 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
--- vim.o.tabstop = 4 -- A TAB character looks like 4 spaces
--- vim.o.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character
--- vim.o.softtabstop = 4 -- Number of spaces inserted instead of a TAB character
--- vim.o.shiftwidth = 4 -- Number of spaces inserted when indenting
+vim.o.tabstop = 4 -- A TAB character looks like 4 spaces
+vim.o.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character
+vim.o.softtabstop = 4 -- Number of spaces inserted instead of a TAB character
+vim.o.shiftwidth = 4 -- Number of spaces inserted when indenting
 
 -- Disable LazyVim auto format
 vim.g.autoformat = false
@@ -30,17 +30,4 @@ if vim.g.neovide then
   vim.keymap.set("i", "<D-v>", '<ESC>l"+Pli') -- Paste insert mode
 end
 
--- Clipboard support for wsl
--- local in_wsl = os.getenv("WSL_DISTRO_NAME") ~= nil
--- if in_wsl then
---   vim.g.clipboard = {
---     name = "wsl clipboard",
---     copy = { ["+"] = { "clip.exe" }, ["*"] = { "clip.exe" } },
---     paste = {
---       ["+"] = "win32yank.exe -o --lf",
---       ["*"] = "win32yank.exe -o --lf",
---     },
---     cache_enabled = false,
---   }
--- end
 vim.g.snacks_animate = false
