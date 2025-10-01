@@ -159,3 +159,5 @@ img2png() {
     -define png:exclude-chunk=all \
     "${1%.*}.png"
 }
+
+. "$HOME/.local/share/../bin/env"
