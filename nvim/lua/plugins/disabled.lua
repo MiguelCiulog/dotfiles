@@ -6,4 +6,5 @@ return {
   -- { "dressing.nvim", enabled = false},
   -- { "nvim-notify", enabled = false},
   -- { "markdown-preview.nvim", enabled = false}
+  {"mini.pairs", enabled = false}
 }
