@@ -1,3 +1,6 @@
+if true == true then
+    return {}
+end
 return {
    "m4xshen/hardtime.nvim",
    lazy = false,
