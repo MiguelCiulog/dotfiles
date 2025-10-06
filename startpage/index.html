@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>~/startpage</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="left-container">
+
+        <div class="gif">
+          <img id="randomGif" src="" />
+        </div>
+      </div>
+        <script>
+          const gifs = ["burning_cat", "glizzy", "hallo", "penguin", "seal"];
+
+          // Pick a random GIF
+          const randomIndex = Math.floor(Math.random() * gifs.length);
+          const randomGif = `random_gifs/${gifs[randomIndex]}.gif`
+
+          // Set the image src
+          document.getElementById("randomGif").src = randomGif;
+        </script>
+
+      <div class="right-container">
+        <div class="head">
+          <p>aku ~/<span class="blinking">_</span></p>
+        </div>
+
+        <div class="bookmarks">
+          <div class="category">
+            <div class="links">
+              <li class="title">chat</li>
+              <li><a href="https://gmail.com">gmail</a></li>
+              <li><a href="https://linkedin.com">linkedin</a></li>
+              <li><a href="https://web.whatsapp.com/">whatsapp</a></li>
+            </div>
+          </div>
+
+          <div class="category">
+            <div class="links">
+              <li class="title">work</li>
+              <li><a href="https://github.com/">github</a></li>
+              <li>
+                <a href="https://translate.google.com/?sl=en&tl=es&op=translate"
+                  >translate</a
+                >
+              </li>
+              <li><a href="https://calendar.google.com">calendar</a></li>
+            </div>
+          </div>
+
+          <div class="category">
+            <div class="links">
+              <li class="title">play</li>
+              <li><a href="https://youtube.com/">youtube</a></li>
+              <li><a href="https://mangadex.org/">mangadex</a></li>
+              <li>
+                <a href="https://www.crunchyroll.com/discover">crunchyroll</a>
+              </li>
+            </div>
+          </div>
+
+          <div class="category">
+            <div class="links">
+              <li class="title">buy</li>
+              <li><a href="https://es.aliexpress.com/">aliexpress</a></li>
+              <li><a href="https://mercadolibre.com/">mercadolibre</a></li>
+              <li><a href="https://amazon.com.mx/">amazon</a></li>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
