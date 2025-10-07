@@ -9,7 +9,6 @@
   <body>
     <div class="container">
       <div class="left-container">
-
         <div class="gif">
           <img id="randomGif" src="" />
         </div>
@@ -17,13 +16,13 @@
         <script>
           const gifs = ["burning_cat", "glizzy", "hallo", "penguin", "seal"];
 
-          // Pick a random GIF
-          const randomIndex = Math.floor(Math.random() * gifs.length);
-          const randomGif = `random_gifs/${gifs[randomIndex]}.gif`
+        // Pick a random GIF
+        const randomIndex = Math.floor(Math.random() * gifs.length);
+        const randomGif = `random_gifs/${gifs[randomIndex]}.gif`;
 
-          // Set the image src
-          document.getElementById("randomGif").src = randomGif;
-        </script>
+        // Set the image src
+        document.getElementById("randomGif").src = randomGif;
+      </script>
 
       <div class="right-container">
         <div class="head">
@@ -68,7 +67,11 @@
             <div class="links">
               <li class="title">buy</li>
               <li><a href="https://es.aliexpress.com/">aliexpress</a></li>
-              <li><a href="https://mercadolibre.com/">mercadolibre</a></li>
+              <li>
+                <a href="https://www.mercadolibre.com.mx/#from=homecom"
+                  >mercadolibre</a
+                >
+              </li>
               <li><a href="https://amazon.com.mx/">amazon</a></li>
             </div>
           </div>

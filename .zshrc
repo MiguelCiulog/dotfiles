@@ -101,6 +101,7 @@ source $ZSH/oh-my-zsh.sh
 alias lg="lazygit"
 alias cls="clear"
 alias open="xdg-open"
+alias tree="exa -T --git-ignore"
 
 source /usr/share/fzf/key-bindings.zsh
 # export FZF_CTRL_T_COMMAND="rg --files --no-ignore-vcs --glob '!*/{.git,node_modules}/**'"
