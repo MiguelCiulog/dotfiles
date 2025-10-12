@@ -100,8 +100,8 @@ source $ZSH/oh-my-zsh.sh
 # Aliases
 alias lg="lazygit"
 alias cls="clear"
-alias open="xdg-open"
 alias tree="exa -T --git-ignore"
+alias cd="zd"
 
 source /usr/share/fzf/key-bindings.zsh
 # export FZF_CTRL_T_COMMAND="rg --files --no-ignore-vcs --glob '!*/{.git,node_modules}/**'"
@@ -117,16 +117,41 @@ function v () {
     fzf --preview 'bat --style numbers,changes --color=always {} | head -50' --bind 'enter:become(nvim {+})'
 }
 
+function zd() {
+  if [ $# -eq 0 ]; then
+    builtin cd ~ && return
+  elif [ -d "$1" ]; then
+    builtin cd "$1"
+  else
+    z "$@" && printf "\U000F17A9 " && pwd || echo "Error: Directory not found"
+  fi
+}
+
 function cs () {
     cd "$@" && ls
 }
 
-eval "$(starship init zsh)"
+if command -v mise &> /dev/null; then
+  eval "$(mise activate zsh)"
+fi
+
+if command -v starship &> /dev/null; then
+  eval "$(starship init zsh)"
+fi
+
+if command -v zoxide &> /dev/null; then
+  eval "$(zoxide init zsh)"
+fi
 
 # remove ls default zsh highlight color
 _ls_colors="ow=34;1:"
 LS_COLORS+=$_ls_colors
 zstyle ':completion:*:default' list-colors "${(s.:.)_ls_colors}"
+
+# open random stuff
+open() {
+  xdg-open "$@" >/dev/null 2>&1 &
+}
 
 # Compression
 compress() { tar -czf "${1%/}.tar.gz" "${1%/}"; }
