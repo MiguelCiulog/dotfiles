@@ -101,7 +101,7 @@ source $ZSH/oh-my-zsh.sh
 alias lg="lazygit"
 alias cls="clear"
 alias tree="exa -T --git-ignore"
-alias cd="zd"
+alias l="exa -lah"
 
 source /usr/share/fzf/key-bindings.zsh
 # export FZF_CTRL_T_COMMAND="rg --files --no-ignore-vcs --glob '!*/{.git,node_modules}/**'"
@@ -115,16 +115,6 @@ export FZF_DEFAULT_OPTS='--layout=reverse --border --inline-info --color=bg+:-1,
 export BAT_THEME="gruvbox-dark"
 function v () {
     fzf --preview 'bat --style numbers,changes --color=always {} | head -50' --bind 'enter:become(nvim {+})'
-}
-
-function zd() {
-  if [ $# -eq 0 ]; then
-    builtin cd ~ && return
-  elif [ -d "$1" ]; then
-    builtin cd "$1"
-  else
-    z "$@" && printf "\U000F17A9 " && pwd || echo "Error: Directory not found"
-  fi
 }
 
 function cs () {
