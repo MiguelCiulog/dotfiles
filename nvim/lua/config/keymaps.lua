@@ -19,6 +19,11 @@ map("n", "L", "$")
 map("n", "<C-p>", ":bnext<CR>", { silent = true })
 map("n", "<C-n>", ":bprevious<CR>", { silent = true })
 
+map("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
+map("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
+map("v", "<", "<gv", { silent = true })
+map("v", ">", ">gv", { silent = true })
+
 vim.api.nvim_create_user_command("CopyFullPath", function()
   local path = vim.fn.expand("%:p")
   vim.fn.setreg("+", path)
