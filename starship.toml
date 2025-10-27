@@ -1,6 +1,5 @@
 [directory]
 read_only = " 󰌾"
-style = "bold green"
 truncation_length = 6
 truncation_symbol = "…/"
 

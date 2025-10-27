@@ -102,6 +102,16 @@ alias lg="lazygit"
 alias cls="clear"
 alias tree="exa -T --git-ignore"
 alias l="exa -lah"
+alias cd="zd"
+zd() {
+  if [ $# -eq 0 ]; then
+    builtin cd ~ && return
+  elif [ -d "$1" ]; then
+    builtin cd "$1"
+  else
+    z "$@" && printf "\U000F17A9 " && pwd || echo "Error: Directory not found"
+  fi
+}
 
 source /usr/share/fzf/key-bindings.zsh
 # export FZF_CTRL_T_COMMAND="rg --files --no-ignore-vcs --glob '!*/{.git,node_modules}/**'"
