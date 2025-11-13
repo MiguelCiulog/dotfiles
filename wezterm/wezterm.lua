@@ -3,7 +3,7 @@ local act = wezterm.action
 
 return {
     disable_default_key_bindings = true,
-    default_prog = { 'powershell.exe', '-NoLogo' },
+    -- default_prog = { 'powershell.exe', '-NoLogo' },
     -- default_prog = { 'pwsh.exe', '-NoLogo' },
     -- default_prog = { "C:\\Windows\\system32\\wsl.exe -d fedora" },
     -- launch_menu = {
@@ -21,8 +21,9 @@ return {
     --     },
     -- },
 
-    font = wezterm.font("Mononoki Nerd Font Mono"),
-    font_size = 14,
+    -- font = wezterm.font("ZedMono Nerd Font Mono"),
+    font = wezterm.font("Lilex Nerd Font Mono"),
+    font_size = 12,
 
     window_close_confirmation = "NeverPrompt",
 
@@ -31,23 +32,14 @@ return {
     hide_tab_bar_if_only_one_tab = true,
     show_tab_index_in_tab_bar = true,
     tab_bar_at_bottom = true,
-
-    -- freetype_load_flags = "NO_HINTING",
-    enable_kitty_keyboard = true,
+    use_fancy_tab_bar = false,
+    -- enable_wayland = false,
 
     -- Colors
     color_scheme = "GruvboxDark",
-    window_background_opacity = 0.97,
+    -- window_background_opacity = 0.97,
 
-    use_fancy_tab_bar = false,
     tab_max_width = 75,
-
-    window_padding = {
-        left = 0,
-        right = 0,
-        top = 0,
-        bottom = 0,
-    },
 
     -- Bell
     audible_bell = "Disabled",
@@ -159,6 +151,21 @@ return {
             key = 'DownArrow',
             mods = 'CTRL|SHIFT',
             action = wezterm.action.AdjustPaneSize { "Down", 1 },
+        },
+        {
+            key = '=',
+            mods = 'CTRL',
+            action = wezterm.action.IncreaseFontSize,
+        },
+        {
+            key = '-',
+            mods = 'CTRL',
+            action = wezterm.action.DecreaseFontSize,
+        },
+        {
+            key = 'Space',
+            mods = 'CTRL|SHIFT',
+            action = wezterm.action.ActivateCopyMode,
         },
     },
 }
