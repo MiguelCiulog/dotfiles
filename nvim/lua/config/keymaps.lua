@@ -55,3 +55,13 @@ vim.api.nvim_create_user_command("CopyGithubCurrFilePath", function()
   vim.fn.setreg("+", github_url)
   vim.notify('Copied "' .. github_url .. '" to the clipboard!')
 end, {})
+
+vim.cmd [[
+function! Trim()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+]]
+
+vim.cmd "command! -nargs=0 Trim call Trim()"
