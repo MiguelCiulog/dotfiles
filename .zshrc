@@ -71,7 +71,7 @@ ZSH_THEME="wezm+"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git zsh-nvm zsh-z)
-plugins=(git zoxide fzf asdf)
+plugins=(git zoxide fzf mise)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -100,8 +100,8 @@ source $ZSH/oh-my-zsh.sh
 # Aliases
 alias lg="lazygit"
 alias cls="clear"
-alias tree="exa -T --git-ignore"
-alias l="exa -lah"
+alias tree="lsd -T --git-ignore"
+alias l="lsd -lah"
 alias cd="zd"
 zd() {
   if [ $# -eq 0 ]; then
@@ -113,8 +113,8 @@ zd() {
   fi
 }
 
-source /usr/share/fzf/key-bindings.zsh
-# export FZF_CTRL_T_COMMAND="rg --files --no-ignore-vcs --glob '!*/{.git,node_modules}/**'"
+source /usr/share/fzf/shell/key-bindings.zsh
+# source /usr/share/fzf/key-bindings.zsh
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --no-ignore-vcs --exclude node_modules --exclude .git"
 export FZF_CTRL_T_COMMAND="fd --type f --hidden --no-ignore-vcs --exclude node_modules --exclude .git"
 export FZF_ALT_C_COMMAND="fd --type d --hidden --no-ignore-vcs --exclude node_modules --exclude .git"
@@ -186,4 +186,5 @@ img2png() {
     "${1%.*}.png"
 }
 
-. "$HOME/.local/share/../bin/env"
+# . "$HOME/.local/share/../bin/env"
+eval "$(/home/Aku/.local/bin/mise activate zsh)"
