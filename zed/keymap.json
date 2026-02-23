@@ -17,7 +17,7 @@
     "bindings": {
       "H": "vim::FirstNonWhitespace",
       "L": "vim::EndOfLine",
-      "space f f": "file_finder::Toggle",
+      // "space f f": "file_finder::Toggle",
       // "space f g": "pane::DeploySearch",
       "space space": "file_finder::Toggle",
       "space s g": "pane::DeploySearch",
@@ -27,6 +27,8 @@
 
       "g r": "editor::FindAllReferences",
 
+      "space e": "vim::ToggleProjectPanelFocus",
+
       "ctrl-shift-u": "vim::ScrollUp",
       "ctrl-u": ["workspace::SendKeystrokes", "ctrl-shift-u z z"],
       "ctrl-shift-d": "vim::ScrollDown",
@@ -34,6 +36,8 @@
 
       "[ e": "editor::GoToPreviousDiagnostic",
       "] e": "editor::GoToDiagnostic",
+      "F2": "editor::Rename",
+      "space b e": "tab_switcher::ToggleAll",
 
       "= =": "editor::Format",
       "space c a": "editor::ToggleCodeActions",
@@ -45,7 +49,9 @@
     "bindings": {
       "H": "vim::FirstNonWhitespace",
       "L": "vim::EndOfLine",
-      "g c": "editor::ToggleComments"
+      "g c": "editor::ToggleComments",
+      "J": "editor::MoveLineDown",
+      "K": "editor::MoveLineUp"
     }
   }
 ]
