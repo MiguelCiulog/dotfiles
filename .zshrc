@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="wezm+"
+ZSH_THEME="dstufft"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -71,7 +71,7 @@ ZSH_THEME="wezm+"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git zsh-nvm zsh-z)
-plugins=(git zoxide fzf mise)
+plugins=(git zoxide fzf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -83,11 +83,7 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+export EDITOR='zed'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -99,8 +95,9 @@ source $ZSH/oh-my-zsh.sh
 
 # Aliases
 alias lg="lazygit"
+alias ldock="lazydocker"
 alias cls="clear"
-alias tree="lsd -T --git-ignore"
+alias tree="lsd -T"
 alias l="lsd -lah"
 alias cd="zd"
 zd() {
@@ -113,7 +110,9 @@ zd() {
   fi
 }
 
-source /usr/share/fzf/shell/key-bindings.zsh
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
+# source /usr/share/fzf/shell/key-bindings.zsh
 # source /usr/share/fzf/key-bindings.zsh
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --no-ignore-vcs --exclude node_modules --exclude .git"
 export FZF_CTRL_T_COMMAND="fd --type f --hidden --no-ignore-vcs --exclude node_modules --exclude .git"
@@ -131,10 +130,6 @@ function cs () {
     cd "$@" && ls
 }
 
-if command -v mise &> /dev/null; then
-  eval "$(mise activate zsh)"
-fi
-
 if command -v starship &> /dev/null; then
   eval "$(starship init zsh)"
 fi
@@ -148,43 +143,58 @@ _ls_colors="ow=34;1:"
 LS_COLORS+=$_ls_colors
 zstyle ':completion:*:default' list-colors "${(s.:.)_ls_colors}"
 
-# open random stuff
-open() {
-  xdg-open "$@" >/dev/null 2>&1 &
+export NVM_DIR="$HOME/.nvm"
+source "$(brew --prefix nvm)/nvm.sh"
+
+# Auto-switch Node version when entering a directory with .nvmrc
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local nvmrc_path="$(nvm_find_nvmrc)"
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
+      nvm use
+    fi
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
+eval "$(rbenv init -)"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+
+workspace-creation() {
+  local slug_arg="$1"
+  local context="${2:-us-east-1}"
+  local namespace="${3:-shared-01}"
+  shift 3
+
+  local label_selector="app.kubernetes.io/name=web-exec"
+  
+  echo "Switching to context: $context"
+  kubectx "$context"
+
+  echo "Looking for pods in namespace: $namespace with label selector: $label_selector"
+  local pod_name
+  pod_name=$(kubectl get pods -n "$namespace" --no-headers -l "$label_selector" --field-selector status.phase=Running | head -1 | awk '{print $1}')
+
+  if [[ -z "$pod_name" ]]; then
+    echo "No running pod found in namespace '$namespace' with label selector '$label_selector'."
+    return 1
+  fi
+
+  echo "Found pod: $pod_name"
+  echo "Running rake task: integrations:bird:create:workspace[${slug_arg}]"
+  echo "Namespace: $namespace | Context: $context"
+
+  kubectl exec -it -n "$namespace" "$pod_name" -- env DISABLE_SPRING=true bundle exec rake "integrations:bird:create:workspace[${slug_arg}]" "$@"
 }
 
-# Compression
-compress() { tar -czf "${1%/}.tar.gz" "${1%/}"; }
-alias decompress="tar -xzf"
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/macr/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/macr/Downloads/google-cloud-sdk/path.zsh.inc'; fi
 
-# Transcode a video to a good-balance 1080p that's great for sharing online
-transcode-video-1080p() {
-  ffmpeg -i $1 -vf scale=1920:1080 -c:v libx264 -preset fast -crf 23 -c:a copy ${1%.*}-1080p.mp4
-}
-
-# Transcode a video to a good-balance 4K that's great for sharing online
-transcode-video-4K() {
-  ffmpeg -i $1 -c:v libx265 -preset slow -crf 24 -c:a aac -b:a 192k ${1%.*}-optimized.mp4
-}
-
-# Transcode any image to JPG image that's great for shrinking wallpapers
-img2jpg() {
-  magick $1 -quality 95 -strip ${1%.*}.jpg
-}
-
-# Transcode any image to JPG image that's great for sharing online without being too big
-img2jpg-small() {
-  magick $1 -resize 1080x\> -quality 95 -strip ${1%.*}.jpg
-}
-
-# Transcode any image to compressed-but-lossless PNG
-img2png() {
-  magick "$1" -strip -define png:compression-filter=5 \
-    -define png:compression-level=9 \
-    -define png:compression-strategy=1 \
-    -define png:exclude-chunk=all \
-    "${1%.*}.png"
-}
-
-# . "$HOME/.local/share/../bin/env"
-eval "$(/home/Aku/.local/bin/mise activate zsh)"
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/macr/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/macr/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+export PATH="$HOME/.local/bin:$PATH"
