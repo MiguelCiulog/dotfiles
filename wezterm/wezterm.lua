@@ -4,20 +4,20 @@ local act = wezterm.action
 return {
 	-- disable_default_key_bindings = true,
 	-- font = wezterm.font("ZedMono Nerd Font Mono"),
-	font_size = 17,
+	font_size = 14,
 
 	window_close_confirmation = "NeverPrompt",
-
 	-- Tab Bar
 	enable_tab_bar = true,
 	hide_tab_bar_if_only_one_tab = true,
 	show_tab_index_in_tab_bar = true,
 	tab_bar_at_bottom = true,
 	use_fancy_tab_bar = false,
-	-- enable_wayland = false,
+	enable_wayland = true,
 
 	-- Colors
-	color_scheme = "GruvboxDark",
+	-- color_scheme = "GruvboxDark",
+	color_scheme = 'Everforest Dark (Gogh)',
 	-- window_background_opacity = 0.97,
 
 	tab_max_width = 75,
