@@ -32,6 +32,12 @@ return {
 	},
 	colors = {
 		visual_bell = "#9c9a9a",
+
+    -- Everforest (dark)
+    background = "#272e33",
+    selection_bg = "#374145",
+    scrollbar_thumb = "#414b50",
+    split = "#414b50",
 	},
 
 	keys = {
