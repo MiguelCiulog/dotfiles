@@ -79,5 +79,7 @@ function v () {
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
+export EDITOR=nvim
+
 # should be last btw
 zinit light zsh-users/zsh-syntax-highlighting
