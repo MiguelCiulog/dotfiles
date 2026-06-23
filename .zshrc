@@ -24,7 +24,6 @@ zinit light starship/starship
 # Add in zsh plugins
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
-zinit light Aloxaf/fzf-tab
 
 # Add in snippets
 zinit snippet OMZL::git.zsh
@@ -40,6 +39,7 @@ zinit snippet OMZP::common-aliases
 zinit snippet OMZL::key-bindings.zsh
 zinit snippet OMZL::theme-and-appearance.zsh
 zinit snippet OMZL::completion.zsh
+zinit snippet OMZL::directories.zsh
 
 # Load completions
 autoload -Uz compinit && compinit
@@ -51,18 +51,6 @@ zinit cdreplay -q
 # Completion styling
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
-# Dynamic fzf-tab previews: ls for folders, bat for files
-zstyle ':fzf-tab:complete:*:*' fzf-preview '
-  if [[ -d $realpath ]]; then
-    ls --color=always $realpath
-  elif [[ -f $realpath ]]; then
-    bat --color=always --style=numbers,changes $realpath
-  fi
-'
-# Force fzf-tab to use your custom FZF colors and layouts
-zstyle ':fzf-tab:*' fzf-flags \
-  --color=bg+:-1,bg:-1,spinner:#fb4934,hl:#928374,fg:#ebdbb2,header:#928374,info:#8ec07c,pointer:#fb4934,marker:#fb4934,fg+:#ebdbb2,prompt:#fb4934,hl+:#fb4934 \
-  --layout=reverse --border --inline-info
 
 # Aliases
 alias ls='ls --color'
